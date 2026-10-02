@@ -12,6 +12,9 @@ jobs:
   validate:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Check out the exact revision
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
@@ -23,31 +26,40 @@ jobs:
           node-version: '22.16.0'
       - name: Record environment and revision
         run: |
-          git rev-parse HEAD
-          node --version
-          npm --version
-          python3 --version
-          uname -sr
-      - name: Bootstrap the missing F00 lockfile
-        # Temporary bootstrap for the previously unlocked baseline.
-        # No write credentials or automatic repository commit are used.
-        run: |
-          if [ ! -f package-lock.json ]; then
-            npm install --ignore-scripts --no-audit --no-fund
-          fi
-          echo F00_LOCKFILE_BEGIN
-          cat package-lock.json
-          echo F00_LOCKFILE_END
-          sha256sum package-lock.json
+          {
+            git rev-parse HEAD
+            node --version
+            npm --version
+            python3 --version
+            uname -sr
+            sha256sum package-lock.json
+          } | tee "$RUNNER_TEMP/mealy-environment.txt"
       - name: Verify a clean locked installation
+        # No bootstrap/update fallback: a missing or inconsistent lockfile fails.
         run: |
           npm ci --ignore-scripts --no-audit --no-fund
           npm ls --all
           ./node_modules/.bin/tsc --version
+          git diff --exit-code -- package.json package-lock.json
       - name: Run every existing check
-        run: npm run check
+        run: npm run check 2>&1 | tee "$RUNNER_TEMP/mealy-check.txt"
       - name: Regenerate and check for drift
         run: |
           npm run generate
           git diff --exit-code -- generated
-          npm run check
+          npm run check 2>&1 | tee "$RUNNER_TEMP/mealy-final-check.txt"
+      - name: Package the validated source snapshot
+        # Exclude dependencies and Git authentication/configuration metadata.
+        run: tar --exclude=./.git --exclude=./node_modules -czf "$RUNNER_TEMP/mealy-source.tar.gz" .
+      - name: Retain validation evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: mealy-validation-${{ github.sha }}
+          retention-days: 14
+          if-no-files-found: error
+          path: |
+            ${{ runner.temp }}/mealy-environment.txt
+            ${{ runner.temp }}/mealy-check.txt
+            ${{ runner.temp }}/mealy-final-check.txt
+            ${{ runner.temp }}/mealy-source.tar.gz
