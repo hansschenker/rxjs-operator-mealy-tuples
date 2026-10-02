@@ -1,0 +1,20 @@
+{
+  "name": "rxjs-operator-mealy-tuples",
+  "version": "0.1.0",
+  "private": true,
+  "description": "RxJS 7.8.2 operator specifications using the extended Mealy six-tuple",
+  "type": "module",
+  "engines": { "node": ">=22.16.0" },
+  "scripts": {
+    "check:types": "tsc -p tsconfig.json",
+    "test:model": "node --experimental-strip-types --test tests/model.test.mjs",
+    "test:rxjs": "node --experimental-strip-types --test tests/rxjs.test.mjs",
+    "test": "npm run test:model && npm run test:rxjs",
+    "generate": "node --experimental-strip-types scripts/generate.mjs",
+    "check:generated": "node --experimental-strip-types scripts/generate.mjs --check",
+    "check:docs": "python3 scripts/check_docs.py",
+    "check": "npm run check:types && npm test && npm run check:generated && npm run check:docs"
+  },
+  "dependencies": { "rxjs": "7.8.2" },
+  "devDependencies": { "typescript": "5.8.3" }
+}
