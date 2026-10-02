@@ -1,5 +1,13 @@
 # Change log
 
+## Family-roadmap adaptation — 2026-10-02
+
+Adapted ROB-SN's complete revision-1.0 family plan to Mealy-tuples as revision 1.1. Preserved the 34 family IDs, eight phases, 146 planned API assignments, and inter-family dependencies; reformulated deliverables around S, S0, Z, A, T, G.
+
+Added F00 to validate and lock the existing harness before completing F01. Retained the current takeWhile seed, rules, paths, generator, and tests; F01 is In progress and completed families remain 0/34. Added a bounded next-session brief and migration record, synchronized ROADMAP/README/AGENTS, and separated planned commands/paths from existing ones.
+
+Planning checks covered table ownership/counts/dependencies, checkpoint consistency, and the seven changed Markdown files. No runtime tests, new model execution, or export audit were performed in this planning change. The initial verification record is retained unchanged, and neither source repository was modified.
+
 ## 0.1.0 — 2026-10-02
 
 Established RxJS Operator Mealy Tuples as a new formulation of ROB-SN's philosophy using S, S0, Z, A, T, G consistently. Retained explicit execution contracts, ordered output/control words, validity and trace laws, evidence boundaries, and Model → Observe → Classify.

@@ -52,6 +52,14 @@ Pinned source + exact configuration + declared execution scope
 
 Visualizations and tests are sibling products of the model, not a mandatory serial chain. A prediction is not an observed runtime fact. Row coverage is not exhaustive behavioral coverage.
 
+## Family implementation plan and next step
+
+The [complete family plan](docs/FAMILY-IMPLEMENTATION-PLAN.md), revision 1.1, adapts ROB-SN's **34 families across eight phases** to this repository. Its **146 planned API identities** retain their owning families and dependencies; those assignments are not a claim of implemented or verified coverage.
+
+**Current checkpoint:** 0/34 families complete. F01 is In progress because the takeWhile reference already exists; F02–F34 remain Planned. The immediate work package is **F00 — Validate and lock the existing baseline**, followed by completing F01 with takeWhile, skipWhile, take, and skip. F00 is a validation gate, not another operator family.
+
+The [next-session brief](docs/NEXT-SESSION.md) specifies how to reuse the existing tests/generator, create and verify a dependency lockfile, run the actual RxJS suite, record evidence, and save the result. The [roadmap summary](docs/ROADMAP.md) provides navigation; the family plan is the authoritative tracker. The [migration record](docs/PLAN-MIGRATION-2026-10-02.md) separates planning checks from runtime validation. No new model or RxJS test run is claimed by this roadmap change.
+
 ## Reading path
 
 | Document | Purpose |
@@ -70,7 +78,10 @@ Visualizations and tests are sibling products of the model, not a mandatory seri
 | [Generated state diagram](generated/takeWhile.visualization.md) | Finite control-state projection with transition labels |
 | [Generated trace](generated/takeWhile.trace.md) | Model-predicted values, order, and subscription boundary |
 | [Verification record](docs/VERIFICATION.md) | Checks actually completed and checks not completed |
-| [Roadmap](docs/ROADMAP.md) | Bounded next steps; no inherited coverage claims |
+| [Family implementation plan](docs/FAMILY-IMPLEMENTATION-PLAN.md) | All 34 families, planned inventory, dependencies, completion gates, and checkpoint |
+| [Next-session brief](docs/NEXT-SESSION.md) | Execute F00, then resume F01 without rebuilding the reference |
+| [Roadmap](docs/ROADMAP.md) | Synchronized summary of the authoritative family plan |
+| [Plan migration record](docs/PLAN-MIGRATION-2026-10-02.md) | Source snapshots, changes, and planning-only checks |
 | [References](docs/REFERENCES.md) | Pinned provenance and primary sources |
 
 ## Relationship to the existing repositories
@@ -101,7 +112,7 @@ npm run check:generated
 npm run check:docs
 ```
 
-**At this checkpoint:** 15 reference-model tests passed, the TypeScript model type-check passed, and generated-artifact/document checks passed. The RxJS tests were authored and syntax-checked but **not executed**: dependency installation failed with a network/DNS error. No package lock or all-checks-passing claim is supplied. See [verification](docs/VERIFICATION.md).
+**Initial implementation checkpoint (historical record):** 15 reference-model tests passed, the TypeScript model type-check passed, and generated-artifact/document checks passed. The RxJS tests were authored and syntax-checked but **not executed**: dependency installation failed with a network/DNS error. No package lock or all-checks-passing claim is supplied. See [verification](docs/VERIFICATION.md).
 
 ## Foundational commitments
 

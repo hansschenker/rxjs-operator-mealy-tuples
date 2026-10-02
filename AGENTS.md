@@ -11,3 +11,11 @@ Do not edit generated artifacts by hand. Update model/takeWhile.ts or scripts/ge
 Run available checks and state which actually ran. A failed dependency installation is not a passing runtime suite. Never inherit predecessor catalogue counts or mark planned tests as executed. Preserve source attribution, including SuperGrok for ideas adapted from the companion project.
 
 Prefer pure functions and named domain predicates; do not add a replacement RxJS implementation or publish the private package. Do not modify either source repository as a side effect of work here. Keep commits focused and include the project contributor credit.
+
+## Family roadmap and handoff
+
+Read docs/FAMILY-IMPLEMENTATION-PLAN.md and docs/NEXT-SESSION.md from current main before selecting work. The family plan is the authoritative tracker; docs/ROADMAP.md is its summary. The imported 146 entries are planned assignments, not inherited conformance or completed profiles.
+
+At the roadmap-adoption checkpoint, execute F00 baseline validation first, then resume the partial F01 prefix family. Reuse operators/takeWhile.md, existing TW rule IDs, model/tests/generator, and actual package script names. Do not recreate the old plan's proposed harness or claim test:family exists. Keep F00 outside the 34-family denominator; only evidence advances status.
+
+Update the tracker, next-session brief, summary, relevant evidence, README, and CHANGELOG together when advancing. Save coherent work to main without force, preserve unrelated edits, and verify the saved revision. Retain historical verification failures when adding new successful runs. Do not implement an unrelated family as part of a plan-only change.
