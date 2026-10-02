@@ -1,5 +1,13 @@
 # Change log
 
+## F00 completed — 2026-10-02
+
+Validated the existing baseline without changing the operator model, rule descriptors, test assertions, generator, or generated views. A fresh local npm attempt failed DNS resolution; a read-only, commit-pinned GitHub Actions workflow then ran the unchanged harness successfully on a connected runner.
+
+Committed the npm-generated lockfile (RxJS 7.8.2, TypeScript 5.8.3, tslib 2.8.1), removed the temporary bootstrap, and verified a clean locked run. All 15 model tests, 14 actual RxJS tests, and all 1,452 bounded comparisons inside the runtime suite passed, together with type/generated/document checks. Regeneration produced no drift.
+
+Added permanent F00 evidence, raw check/environment/install logs, and checksums; preserved historical failures in VERIFICATION.md. Updated the live profile statuses and synchronized the family tracker, README, ROADMAP, AGENTS, and next-session handoff. F00 is Complete; F01 is next and remains In progress; completed operator families remain 0/34. Browser/reentrant/all-overload parity and Mermaid rendering remain outside this evidence.
+
 ## Family-roadmap adaptation — 2026-10-02
 
 Adapted ROB-SN's complete revision-1.0 family plan to Mealy-tuples as revision 1.1. Preserved the 34 family IDs, eight phases, 146 planned API assignments, and inter-family dependencies; reformulated deliverables around S, S0, Z, A, T, G.

@@ -1,3 +1,5 @@
+> **Current status: F00 complete.** The original entry below is retained as history; its unexecuted-runtime statements describe the initial checkpoint, not the current status. See the F00 entry at the end and [F00 evidence](../evidence/F00-baseline-validation.md).
+
 # Verification record — 2 October 2026
 
 ## Baseline and reviewed evidence
@@ -34,3 +36,11 @@ The generated table and diagram use reviewed textual descriptors, not a general 
 ## Next verification gate
 
 In a connected environment, run `npm install --ignore-scripts`, then `npm run check`. Investigate any failures, record actual commands/results, and update this record and the profile statuses together. Do not convert an authored test obligation into a passing test merely by changing its status label.
+
+## F00 completed — 2 October 2026
+
+A fresh local npm attempt again failed DNS resolution. The existing harness was then executed successfully on GitHub-hosted Ubuntu using Node 22.16.0, npm 10.9.2, Python 3.12.3, TypeScript 5.8.3, and RxJS 7.8.2. The npm-generated lockfile was reviewed, hash-verified, committed, and independently exercised by a clean npm ci run.
+
+[Locked run 36968623943](https://github.com/hansschenker/rxjs-operator-mealy-tuples/actions/runs/36968623943) passed: **15 model tests**, **14 actual RxJS tests**, **all 1,452 bounded comparisons inside the RxJS suite**, type checking, the three generated-view checks, and documentation checks. Regeneration produced no drift and a second aggregate check passed. See [F00 evidence](../evidence/F00-baseline-validation.md) for exact revisions, commands, logs, checksums, and limits. No operator model or assertion was repaired or weakened.
+
+The historical missing-lockfile and unexecuted-RxJS blocker is resolved for the hosted environment. This is selective runtime evidence for the existing scope, not exhaustive equivalence or a rendered-diagram check. The initial evidence above remains unchanged. The next task is **F01 — Taking and dropping prefixes**, not another F00 setup pass.

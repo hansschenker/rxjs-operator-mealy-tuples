@@ -56,27 +56,28 @@ Use the current [foundation](FOUNDATION.md), [execution contract](EXECUTION-CONT
 
 Out of scope: an RxJS replacement, general six-tuple interpreter/compiler, arbitrary generated operators, bulk import of unreviewed analyses, npm publication, and RxJS 8/9 migration. Small reference evaluators and generators remain development-time verification/teaching tools.
 
-## 3. Current checkpoint
+## 3. Current checkpoint — F00 completed on 2 October 2026
 
-| Field | State at this planning checkpoint |
+| Field | State after F00 validation |
 |---|---|
 | Foundation and template | Existing six-tuple framework; retain rather than rebuild |
 | Existing reference | `operators/takeWhile.md`, rules TW01–TW08, typed model, test plan, generated table/diagram/trace |
-| Recorded model evidence | 15 passing model tests and type/generated/document checks, as recorded in the initial verification file; not rerun by this planning change |
-| Recorded actual RxJS evidence | Suite authored, including 1,452 bounded comparisons; not executed in the initial record because installation failed with EAI_AGAIN |
-| Dependency reproducibility | Exact direct versions exist; no lockfile at the inspected checkpoint |
-| Next work package | **F00 — Validate and lock the existing baseline** |
+| Recorded model evidence | 15 model tests passed again, together with type/generated/document checks, in the recorded hosted runs |
+| Recorded actual RxJS evidence | 14 actual RxJS tests passed, including all 1,452 bounded comparisons; [F00 evidence](../evidence/F00-baseline-validation.md) |
+| Dependency reproducibility | npm-generated lockfile committed; clean npm ci passed with RxJS 7.8.2, TypeScript 5.8.3, and tslib 2.8.1 |
+| F00 validation gate | **Complete (declared scope)**; locked run 36968623943 succeeded |
+| Next work package | **F01 — Taking and dropping prefixes** |
 | First family to resume | **F01 — Taking and dropping prefixes** |
 | Family completion | **0 / 34 complete; F01 In progress; F02–F34 Planned** |
-| Scope of this change | Plan migration and handoff only; no new runtime-validation or family-completion claim |
+| Scope of this checkpoint | F00 infrastructure, reproducibility, and actual baseline validation; no new operator profiles or completed family claims |
 
 See [VERIFICATION.md](VERIFICATION.md) for the original evidence. Preserve it as dated history when appending later runs. A reference-model pass is not an RxJS pass. Tests for every/defaultIfEmpty inside the current suite are review regression fixtures, not completed F06 profiles.
 
-F00 is a prerequisite work package, **not a 35th operator family**. It is pending; the previous attempt to install dependencies was blocked. A fresh failure must be recorded as a fresh failure rather than assumed from history. No work is scheduled in the background.
+F00 is a prerequisite work package, **not a 35th operator family**. It is now complete: local DNS failure was overcome by executing the existing harness on GitHub-hosted runners. Historical failures remain in VERIFICATION.md. The read-only validation workflow runs on pushes to main and on manual dispatch; no operator-family work is automatically scheduled.
 
 ## 4. F00 — Validate and lock the existing baseline
 
-**Goal:** establish a reproducible, actually executed RxJS 7.8.2 baseline before extending the family corpus. **Status:** Pending; prior dependency installation was blocked.
+**Goal:** establish a reproducible, actually executed RxJS 7.8.2 baseline before extending the family corpus. **Status:** Complete on 2 October 2026; see [F00 evidence](../evidence/F00-baseline-validation.md). The procedure below is retained as the acceptance/revalidation contract, not unfinished setup work.
 
 ### Reuse, do not replace
 
@@ -86,7 +87,7 @@ Read `package.json`, `tsconfig.json`, `model/takeWhile.ts`, both files in `tests
 
 First inspect current `main` and its evidence; another session may already have resolved this gate. Use the declared Node support and record actual Node/npm/TypeScript versions. Preserve direct dependency pins `rxjs: 7.8.2` and `typescript: 5.8.3` unless a demonstrated tooling issue requires an explicitly documented adjustment; do not change the RxJS baseline.
 
-When no lockfile exists, run `npm install --ignore-scripts` in a connected working environment. Review and retain the generated lockfile. Then verify a clean installation using `npm ci --ignore-scripts` and run `npm run check`. npm ci requires an existing consistent lockfile ([npm documentation](https://docs.npmjs.com/cli/v10/commands/npm-ci/)); it is not the first command for this unlocked checkpoint. With an already committed valid lockfile, start with npm ci instead.
+When no lockfile exists, run `npm install --ignore-scripts` in a connected working environment. Review and retain the generated lockfile. Then verify a clean installation using `npm ci --ignore-scripts` and run `npm run check`. npm ci requires an existing consistent lockfile ([npm documentation](https://docs.npmjs.com/cli/v10/commands/npm-ci/)); it was not the first command for the originally unlocked checkpoint. With an already committed valid lockfile, start with npm ci instead.
 
 The **existing** script interface is:
 
@@ -204,7 +205,7 @@ F01 is **In progress** because only its reference seed exists. Do not label the 
 
 ### A. Resume and freeze scope
 
-Read this tracker, AGENTS.md, relevant evidence, prerequisite family comparisons, and the execution contract from current main. Record the inspected commit, selected family, qualified entries, exact configurations, and exclusions. Do not rely on remembered conversation status. Resume F00 or the unfinished family before advancing.
+Read this tracker, AGENTS.md, relevant evidence, prerequisite family comparisons, and the execution contract from current main. Record the inspected commit, selected family, qualified entries, exact configurations, and exclusions. Do not rely on remembered conversation status. Resume an unfinished prerequisite or the current unfinished family before advancing; F00 is already complete at this checkpoint.
 
 ### B. Read the pinned implementation, then formulate the six components
 
@@ -242,7 +243,7 @@ Only after model and evidence are recorded, derive behavioral qualities and clas
 
 ## 8. Repository layout: existing versus planned
 
-**Existing paths to preserve:** `operators/takeWhile.md`, `test-plans/takeWhile.md`, `model/takeWhile.ts`, `tests/model.test.mjs`, `tests/rxjs.test.mjs`, `scripts/generate.mjs`, `scripts/check_docs.py`, and the three `generated/takeWhile.*.md` views. Existing root-level operator pages remain canonical for pipeable entries; do not create a duplicate `operators/pipeable/takeWhile.md`.
+**Existing paths to preserve:** `operators/takeWhile.md`, `test-plans/takeWhile.md`, `model/takeWhile.ts`, `tests/model.test.mjs`, `tests/rxjs.test.mjs`, `scripts/generate.mjs`, `scripts/check_docs.py`, and the three `generated/takeWhile.*.md` views. Existing root-level operator pages remain canonical for pipeable entries; do not create a duplicate `operators/pipeable/takeWhile.md`. F00 also established `package-lock.json`, `.github/workflows/validation.yml`, and `evidence/F00-baseline-validation.md` with retained text logs/checksums.
 
 The following are **future conventions, not files claimed to exist now**:
 
@@ -262,7 +263,6 @@ traces/F01-prefix-selection.md         cross-operator discriminating traces
 tests/families/F01-prefix-selection.test.mjs
                                        real RxJS family checks
 tests/support/                        shared fixtures when justified
-evidence/F00-baseline-validation.md    actual baseline run evidence
 evidence/F01-prefix-selection.md       family source/trace/check evidence
 docs/OPERATOR-COVERAGE.md               qualified entries and profile statuses
 ```
@@ -279,7 +279,7 @@ In F01, initialize OPERATOR-COVERAGE.md from this inventory: qualified name, own
 
 | Entry | Starting state | Initial profile to establish |
 |---|---|---|
-| P:takeWhile | Existing source-reviewed profile/model/views; runtime evidence pending F00 | Preserve indexed Boolean predicate, explicit inclusive false/true, throws, terminal outcomes, and TW rule IDs; add the omitted-default-argument equivalence check |
+| P:takeWhile | Existing profile/model/views; selectively RxJS-tested in F00 | Preserve indexed Boolean predicate, explicit inclusive false/true, throws, terminal outcomes, and TW rule IDs; add the omitted-default-argument equivalence check |
 | P:skipWhile | No profile under this plan | Indexed predicate; initial skipping then forwarding; failing boundary forwarded; predicate no longer called after boundary |
 | P:take | No local profile under this plan | Nonnegative integer count; 0, 1, parameterized positive count; activation and early source-disconnection behavior |
 | P:skip | No profile under this plan | Nonnegative integer count; 0, 1, parameterized positive count; prefix suppression and continued source participation |
@@ -347,6 +347,6 @@ Record inspected baseline SHAs in evidence and report the newly created SHA afte
 
 **Next session:**
 
-> Read AGENTS.md, docs/FAMILY-IMPLEMENTATION-PLAN.md, docs/NEXT-SESSION.md, and current verification evidence from main. Execute F00 — Validate and lock the existing baseline. Reuse the existing six-tuple model, scripts, tests, and generated views. Keep RxJS 7.8.2, run and record real validation, commit reproducibility/evidence updates, and verify the saved revision. If a required check is blocked, record it honestly. The following bounded family session resumes F01; do not jump to F02.
+> Read AGENTS.md, docs/FAMILY-IMPLEMENTATION-PLAN.md, docs/NEXT-SESSION.md, and F00 evidence from main. Resume F01 — Taking and dropping prefixes. Reuse the validated takeWhile reference, TW01–TW08, committed lockfile, existing tests, and generator; add skipWhile, take, and skip under section 9. Keep RxJS 7.8.2, run the baseline and new checks, record evidence, update coverage/progress, save, and verify. F00 is complete; do not rebuild its harness or jump to F02.
 
 **Following sessions:** resume unfinished work under its existing ID, otherwise take the next planned family with satisfied dependencies, establish scoped profiles and evidence, update the tracker, save, and verify. Session boundaries are work scopes, not promised durations or scheduled background work.

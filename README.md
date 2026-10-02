@@ -56,9 +56,9 @@ Visualizations and tests are sibling products of the model, not a mandatory seri
 
 The [complete family plan](docs/FAMILY-IMPLEMENTATION-PLAN.md), revision 1.1, adapts ROB-SN's **34 families across eight phases** to this repository. Its **146 planned API identities** retain their owning families and dependencies; those assignments are not a claim of implemented or verified coverage.
 
-**Current checkpoint:** 0/34 families complete. F01 is In progress because the takeWhile reference already exists; F02–F34 remain Planned. The immediate work package is **F00 — Validate and lock the existing baseline**, followed by completing F01 with takeWhile, skipWhile, take, and skip. F00 is a validation gate, not another operator family.
+**Current checkpoint:** **F00 Complete**; 0/34 operator families complete. F01 is In progress and is now the next task: complete takeWhile, skipWhile, take, and skip. F02–F34 remain Planned. The existing baseline has a committed lockfile and passing hosted validation: 15 model tests, 14 RxJS tests, and all 1,452 bounded comparisons. See [F00 evidence](evidence/F00-baseline-validation.md). F00 is a validation gate, not another operator family.
 
-The [next-session brief](docs/NEXT-SESSION.md) specifies how to reuse the existing tests/generator, create and verify a dependency lockfile, run the actual RxJS suite, record evidence, and save the result. The [roadmap summary](docs/ROADMAP.md) provides navigation; the family plan is the authoritative tracker. The [migration record](docs/PLAN-MIGRATION-2026-10-02.md) separates planning checks from runtime validation. No new model or RxJS test run is claimed by this roadmap change.
+The [next-session brief](docs/NEXT-SESSION.md) now specifies the F01 continuation. Reuse the validated tests, generator, rule IDs, and locked dependencies. The [roadmap summary](docs/ROADMAP.md) provides navigation; the family plan is the authoritative tracker. The [migration record](docs/PLAN-MIGRATION-2026-10-02.md) remains historical planning evidence; [F00 evidence](evidence/F00-baseline-validation.md) records the subsequent actual runtime checks.
 
 ## Reading path
 
@@ -79,7 +79,8 @@ The [next-session brief](docs/NEXT-SESSION.md) specifies how to reuse the existi
 | [Generated trace](generated/takeWhile.trace.md) | Model-predicted values, order, and subscription boundary |
 | [Verification record](docs/VERIFICATION.md) | Checks actually completed and checks not completed |
 | [Family implementation plan](docs/FAMILY-IMPLEMENTATION-PLAN.md) | All 34 families, planned inventory, dependencies, completion gates, and checkpoint |
-| [Next-session brief](docs/NEXT-SESSION.md) | Execute F00, then resume F01 without rebuilding the reference |
+| [Next-session brief](docs/NEXT-SESSION.md) | Resume F01 using the validated takeWhile reference |
+| [F00 evidence](evidence/F00-baseline-validation.md) | Clean installation, actual runtime results, retained logs, and limits |
 | [Roadmap](docs/ROADMAP.md) | Synchronized summary of the authoritative family plan |
 | [Plan migration record](docs/PLAN-MIGRATION-2026-10-02.md) | Source snapshots, changes, and planning-only checks |
 | [References](docs/REFERENCES.md) | Pinned provenance and primary sources |
@@ -99,11 +100,11 @@ The new primary vocabulary is **State space, Initial state, Input alphabet, Outp
 Node 22.16 or later in the Node 22 line and Python 3 are used by the scaffold. TypeScript is pinned to 5.8.3; RxJS is pinned to 7.8.2. Node's type-stripping flag is used only to run the reference-model scaffold and can emit an experimental warning.
 
 ```sh
-npm install --ignore-scripts
+npm ci --ignore-scripts
 npm run check
 ```
 
-The complete command includes the RxJS runtime suite. Dependency-free model and generated-document checks can be run separately:
+The committed lockfile is required. The [validation workflow](.github/workflows/validation.yml) runs these checks on each push to main and can be started manually. It has read-only repository permissions and does not commit or publish. The complete command includes the RxJS runtime suite. Dependency-free model and generated-document checks can be run separately:
 
 ```sh
 npm run test:model

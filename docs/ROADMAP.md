@@ -1,34 +1,34 @@
 # Roadmap and current checkpoint
 
-**Planning revision:** 1.1 — 2 October 2026. **Runtime baseline:** RxJS 7.8.2.  
+**Planning revision:** 1.1. **Checkpoint:** F00 completed, 2 October 2026. **Runtime baseline:** RxJS 7.8.2.  
 **Authoritative plan:** [Operator-Family Implementation Plan](FAMILY-IMPLEMENTATION-PLAN.md).  
-**Next-task brief:** [F00 baseline validation](NEXT-SESSION.md).
+**Next-task brief:** [F01 prefix-family continuation](NEXT-SESSION.md).
 
-The complete ROB-SN plan has been adapted to the current six-tuple repository. Its **34 family IDs, eight phases, and 146 planned API identities** are retained. These are planned assignments, not imported implementation or completion claims. The [migration record](PLAN-MIGRATION-2026-10-02.md) records provenance and validation limits.
+The adapted ROB-SN plan retains **34 family IDs, eight phases, and 146 planned API identities**. These are assignments, not automatically completed or verified profiles. The [migration record](PLAN-MIGRATION-2026-10-02.md) remains the history of plan adoption.
 
 ## Current state
 
 | Work | Status |
 |---|---|
-| Six-tuple foundation and templates | Already established; retained |
-| takeWhile reference profile, model, TW01–TW08, and three views | Already present; source-reviewed and model-tested according to the initial verification record |
-| Actual RxJS baseline and lockfile | F00 Pending; the initial installation attempt was blocked and runtime suite was not executed |
-| F01 prefix family | In progress: existing takeWhile seed; three neighboring profiles remain to be implemented |
+| Six-tuple foundation and templates | Established; unchanged by F00 |
+| F00 baseline validation | **Complete**: reviewed lockfile, clean hosted installation, actual aggregate validation |
+| takeWhile reference, model, TW01–TW08, and three views | Source-reviewed, model-tested, and selectively RxJS-tested in the declared non-reentrant scope |
+| F01 prefix family | **In progress — next task**; complete the reference package and add skipWhile, take, skip |
 | F02–F34 | Planned |
-| Completed families | **0 / 34** |
+| Completed operator families | **0 / 34** |
 
-The initial record reports 15 model tests passed and 1,452 bounded runtime comparisons authored but unexecuted. That is historical evidence, not a new run by this roadmap change. See [VERIFICATION.md](VERIFICATION.md). F00 is a validation gate, not an extra operator family.
+[F00 evidence](../evidence/F00-baseline-validation.md) records **15 model tests passed**, **14 RxJS tests passed**, and **all 1,452 bounded comparisons passed inside the RxJS suite**. The earlier local network failures remain in [verification history](VERIFICATION.md); successful runtime checks were performed on GitHub-hosted runners, not in the network-isolated local container. F00 is a prerequisite gate, not an extra family.
 
 ## Sequence
 
 ```text
-F00  Validate and lock the existing baseline
+F00  Complete: locked dependencies and validated existing baseline
   ↓
-F01  Complete the prefix family: takeWhile, skipWhile, take, skip
+F01  NEXT: complete takeWhile, skipWhile, take, and skip
   ↓
 F02  Mapping and per-value selection
   ↓
-F03–F34  Continue the preserved dependency-ordered family plan
+F03–F34  Preserve the dependency-ordered family plan
   ↓
 Closing cross-family coverage and conformance audit
 ```
@@ -46,6 +46,8 @@ Closing cross-family coverage and conformance audit
 
 ## Rules for advancing
 
-Use S, S0, Z, A, T, G consistently. Every family requires guarded tables, test obligations, visualizations, a comparison, explicit execution assumptions, actual scoped RxJS checks, and a verified GitHub save. Model/notification/resource observations are separate from intended outputs and classification.
+Use S, S0, Z, A, T, G consistently. Each family needs guarded tables, test obligations, visualizations, comparison, execution assumptions, actual scoped RxJS checks, and a verified save. Preserve the existing takeWhile model exclusions and distinguish requested output words from delivered observations.
 
-Resume unfinished work; do not mark a family complete from a single reference or a count of documents. After F00 succeeds, update the plan and next-task brief to F01. After the four-operator family passes its gate, advance to F02. Preserve current paths, script names, historical evidence, and source-project attribution.
+Use `npm ci --ignore-scripts` and `npm run check`. The read-only [validation workflow](../.github/workflows/validation.yml) also runs the existing checks on main pushes and manual dispatch. A queued or merely started job is not a passed check. Preserve actual evidence for every completed package.
+
+F00 did not add neighboring operator profiles or complete F01. Resume F01; advance to F02 only after the full four-operator package passes its own completion gate.

@@ -1,0 +1,13 @@
+{
+  "validated_commit": "776bca758e19b72e4887e448a0443ee536df1533",
+  "validated_git_tree": "7b325ffb5c2b803e75ebef3997988e7dcef66d8d",
+  "workflow_run_id": 36968623943,
+  "workflow_job_id": 110717712268,
+  "scope": "Checksums of raw evidence and the npm-generated lockfile; not a hash of this metadata-finalization commit.",
+  "sha256": {
+    "package-lock.json": "15ab0afc6515e59299ca197482219b4faa3a6e15f357e8e220c0d757a5982b53",
+    "evidence/F00/local-install.txt": "a636ea8d4391c55af2429c7e991b5de168a5648d7c97ea1aa924320648a58e10",
+    "evidence/F00/locked-environment.txt": "9d9b9587b923ba10e9c3691334f2eba15e29197a10bb8c75d9c50926507fac7b",
+    "evidence/F00/locked-check.txt": "bd90bf55d0cd9bd00693877d2968c7099ad00a9ed2f1549c232340710598f4dc"
+  }
+}

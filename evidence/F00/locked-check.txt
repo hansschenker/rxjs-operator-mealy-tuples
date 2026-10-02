@@ -1,0 +1,231 @@
+
+> rxjs-operator-mealy-tuples@0.1.0 check
+> npm run check:types && npm test && npm run check:generated && npm run check:docs
+
+
+> rxjs-operator-mealy-tuples@0.1.0 check:types
+> tsc -p tsconfig.json
+
+
+> rxjs-operator-mealy-tuples@0.1.0 test
+> npm run test:model && npm run test:rxjs
+
+
+> rxjs-operator-mealy-tuples@0.1.0 test:model
+> node --experimental-strip-types --test tests/model.test.mjs
+
+TAP version 13
+# (node:2693) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [TW01] Active with SourceNext
+ok 1 - [TW01] Active with SourceNext
+  ---
+  duration_ms: 1.664195
+  type: 'test'
+  ...
+# Subtest: [TW02] Active with SourceNext
+ok 2 - [TW02] Active with SourceNext
+  ---
+  duration_ms: 0.134632
+  type: 'test'
+  ...
+# Subtest: [TW03] Active with SourceNext
+ok 3 - [TW03] Active with SourceNext
+  ---
+  duration_ms: 0.175918
+  type: 'test'
+  ...
+# Subtest: [TW04] Active with SourceComplete
+ok 4 - [TW04] Active with SourceComplete
+  ---
+  duration_ms: 0.124522
+  type: 'test'
+  ...
+# Subtest: [TW05] Active with SourceError
+ok 5 - [TW05] Active with SourceError
+  ---
+  duration_ms: 0.127839
+  type: 'test'
+  ...
+# Subtest: [TW06] Active with Unsubscribe
+ok 6 - [TW06] Active with Unsubscribe
+  ---
+  duration_ms: 0.107531
+  type: 'test'
+  ...
+# Subtest: [TW07] Active with SourceNext
+ok 7 - [TW07] Active with SourceNext
+  ---
+  duration_ms: 0.128089
+  type: 'test'
+  ...
+# Subtest: [TW08] Completed with SourceNext
+ok 8 - [TW08] Completed with SourceNext
+  ---
+  duration_ms: 0.099626
+  type: 'test'
+  ...
+# Subtest: [TW08] Errored with SourceNext
+ok 9 - [TW08] Errored with SourceNext
+  ---
+  duration_ms: 0.34319
+  type: 'test'
+  ...
+# Subtest: [TW08] Cancelled with SourceNext
+ok 10 - [TW08] Cancelled with SourceNext
+  ---
+  duration_ms: 0.366433
+  type: 'test'
+  ...
+# Subtest: S0 is Active(0); initialization does not emit
+ok 11 - S0 is Active(0); initialization does not emit
+  ---
+  duration_ms: 0.183432
+  type: 'test'
+  ...
+# Subtest: every descriptor has a unique rule ID and an independent test vector
+ok 12 - every descriptor has a unique rule ID and an independent test vector
+  ---
+  duration_ms: 0.958619
+  type: 'test'
+  ...
+# Subtest: T and G are obtained with one predicate invocation per active SourceNext
+ok 13 - T and G are obtained with one predicate invocation per active SourceNext
+  ---
+  duration_ms: 0.342259
+  type: 'test'
+  ...
+# Subtest: all attempted input categories preserve each settled terminal state
+ok 14 - all attempted input categories preserve each settled terminal state
+  ---
+  duration_ms: 0.195906
+  type: 'test'
+  ...
+# Subtest: predicate and inclusive are parameters, not shared execution memory
+ok 15 - predicate and inclusive are parameters, not shared execution memory
+  ---
+  duration_ms: 0.130984
+  type: 'test'
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 134.751104
+
+> rxjs-operator-mealy-tuples@0.1.0 test:rxjs
+> node --experimental-strip-types --test tests/rxjs.test.mjs
+
+TAP version 13
+# (node:2722) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: [TW01 TW02] exclusive boundary
+ok 1 - [TW01 TW02] exclusive boundary
+  ---
+  duration_ms: 4.084864
+  type: 'test'
+  ...
+# Subtest: [TW01 TW03] inclusive boundary
+ok 2 - [TW01 TW03] inclusive boundary
+  ---
+  duration_ms: 0.531262
+  type: 'test'
+  ...
+# Subtest: [TW04] empty source
+ok 3 - [TW04] empty source
+  ---
+  duration_ms: 0.300541
+  type: 'test'
+  ...
+# Subtest: [TW04] source completes while active
+ok 4 - [TW04] source completes while active
+  ---
+  duration_ms: 0.297215
+  type: 'test'
+  ...
+# Subtest: [TW05] source error
+ok 5 - [TW05] source error
+  ---
+  duration_ms: 0.452595
+  type: 'test'
+  ...
+# Subtest: [TW06] cancellation without completion
+ok 6 - [TW06] cancellation without completion
+  ---
+  duration_ms: 0.410406
+  type: 'test'
+  ...
+# Subtest: [TW06] never source cancelled
+ok 7 - [TW06] never source cancelled
+  ---
+  duration_ms: 0.200394
+  type: 'test'
+  ...
+# Subtest: [TW07] predicate throw
+ok 8 - [TW07] predicate throw
+  ---
+  duration_ms: 0.256689
+  type: 'test'
+  ...
+# Subtest: [TW01 TW02] callback index controls the boundary
+ok 9 - [TW01 TW02] callback index controls the boundary
+  ---
+  duration_ms: 0.714263
+  type: 'test'
+  ...
+# Subtest: [TW01 TW02 TW08] predicate is called once per eligible input, including rejection
+ok 10 - [TW01 TW02 TW08] predicate is called once per eligible input, including rejection
+  ---
+  duration_ms: 0.677244
+  type: 'test'
+  ...
+# Subtest: S0 and index state are independent across two subscriptions
+ok 11 - S0 and index state are independent across two subscriptions
+  ---
+  duration_ms: 0.359431
+  type: 'test'
+  ...
+# Subtest: 1,452 bounded non-reentrant model/RxJS comparisons include terminal and disposal words
+ok 12 - 1,452 bounded non-reentrant model/RxJS comparisons include terminal and disposal words
+  ---
+  duration_ms: 26.533479
+  type: 'test'
+  ...
+# Subtest: [REVIEW-EVERY] passing inputs do not emit false; first failure emits false then completes
+ok 13 - [REVIEW-EVERY] passing inputs do not emit false; first failure emits false then completes
+  ---
+  duration_ms: 0.672465
+  type: 'test'
+  ...
+# Subtest: [REVIEW-DEFAULT] default belongs to empty completion, not a second source value
+ok 14 - [REVIEW-DEFAULT] default belongs to empty completion, not a second source value
+  ---
+  duration_ms: 0.310128
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 285.42016
+
+> rxjs-operator-mealy-tuples@0.1.0 check:generated
+> node --experimental-strip-types scripts/generate.mjs --check
+
+All 3 generated artifacts match the reviewed descriptors/reference model.
+(node:2745) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+> rxjs-operator-mealy-tuples@0.1.0 check:docs
+> python3 scripts/check_docs.py
+
+Checked 24 Markdown files: local targets, selected delimiters, source pins, and canonical vocabulary.
+Not checked: external link availability, full rendering, semantic correctness, or RxJS runtime parity.

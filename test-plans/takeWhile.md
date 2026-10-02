@@ -26,8 +26,8 @@ The runtime suite also contains two source-review regression checks for every/de
 
 The authored runtime suite enumerates all 121 sequences of length 0–4 over {-1,0,1}, two predicates (positive value and index below two), two inclusive choices, and three endings (complete, source error, external cancellation): **1,452 comparisons**. It compares the reference model's output word and callback calls with actual RxJS observations, including one owned teardown.
 
-This is a finite discriminating sample, not exhaustive operator equivalence. Synchronous, non-reentrant sources and passive observers deliberately match the reference profile. Runtime execution of this sample is **not yet verified** at the initial checkpoint.
+This is a finite discriminating sample, not exhaustive operator equivalence. Synchronous, non-reentrant sources and passive observers deliberately match the reference profile. Runtime execution of this sample is now **verified for the stated bounded scope** by [F00 evidence](../evidence/F00-baseline-validation.md); all 1,452 comparisons passed on the hosted runner.
 
 ## Status
 
-Model suite: **15 passed** locally. RxJS suite: authored and syntax-checked, not executed. See [verification](../docs/VERIFICATION.md). No per-row test obligation should be reported as runtime-passing solely because it appears in this plan.
+Model suite: **15 passed**. Project RxJS suite: **14 passed**, including the case containing all **1,452 passing bounded comparisons**. See [F00 evidence](../evidence/F00-baseline-validation.md) and [verification history](../docs/VERIFICATION.md). Model-only terminal-state assertions are not private-state observations of RxJS; a plan row is not runtime evidence beyond the cases actually executed.

@@ -3,7 +3,7 @@
 **Baseline:** RxJS 7.8.2. **API:** pipeable `takeWhile(predicate, inclusive)`.  
 **Scope:** one downstream subscription and its owned source subscription; no sharing.  
 **Level:** stable behavioral reactions, not exact reentrant execution.  
-**Evidence:** source-reviewed, reference-model tested; actual RxJS runtime execution remains unverified at this checkpoint.
+**Evidence:** source-reviewed, reference-model tested, and selectively RxJS-tested during [F00](../evidence/F00-baseline-validation.md). The existing execution scope and exclusions remain unchanged.
 
 ## Explanation
 
@@ -88,4 +88,4 @@ A predicate-controlled prefix-taking policy with per-subscription index memory, 
 
 ## Evidence limits
 
-The upstream [takeWhile test file](https://github.com/ReactiveX/rxjs/blob/7.8.2/spec/operators/takeWhile-spec.ts) was inspected in part, not run. Fifteen local reference-model tests passed. The authored RxJS tests have not been executed because dependencies could not be installed. Full reentrant or all-overload equivalence is not claimed; see [verification](../docs/VERIFICATION.md).
+The upstream [takeWhile test file](https://github.com/ReactiveX/rxjs/blob/7.8.2/spec/operators/takeWhile-spec.ts) was inspected in part; that upstream suite was not run. Our F00 hosted validation passed 15 reference-model tests and all 14 project RxJS tests, including 1,452 bounded comparisons. See [F00 evidence](../evidence/F00-baseline-validation.md) for exact revisions, raw output, and the distinction between project tests and upstream tests. Full reentrant or all-overload equivalence is not claimed; [verification history](../docs/VERIFICATION.md) retains the initial installation failure.

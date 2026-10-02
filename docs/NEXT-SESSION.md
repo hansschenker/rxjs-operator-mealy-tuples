@@ -1,43 +1,49 @@
-# Next session — F00 baseline validation
+# Next session — F01 prefix-family continuation
 
-**Checkpoint:** 2 October 2026; plan revision 1.1.  
+**Checkpoint:** F00 completed, 2 October 2026; plan revision 1.1.  
 **Repository:** `hansschenker/rxjs-operator-mealy-tuples`, branch `main`.  
-**Current task:** F00 — Validate and lock the existing baseline.  
-**After F00:** resume F01 — Taking and dropping prefixes. F02 is not next yet.
+**Current task:** F01 — Taking and dropping prefixes.  
+**After complete F01:** F02 — Mapping and per-value selection.
 
-Read the authoritative [family plan](FAMILY-IMPLEMENTATION-PLAN.md), [roadmap summary](ROADMAP.md), [AGENTS.md](../AGENTS.md), and current [verification record](VERIFICATION.md). This handoff is a requested-session instruction, not an automation or background promise.
+Read [AGENTS.md](../AGENTS.md), the authoritative [family plan](FAMILY-IMPLEMENTATION-PLAN.md), [F00 evidence](../evidence/F00-baseline-validation.md), and the [execution contract](EXECUTION-CONTRACT.md) from current main. Check for work saved after this handoff. This is a user-initiated session brief, not scheduled family implementation.
 
-## Why this is the next step
+## Reuse the validated baseline
 
-At the inspected baseline `c2bbd1c780be4e0aff63a0a7027a80c0b44ce7ea`, the six-tuple framework, a takeWhile reference evaluator, TW01–TW08, generated views, and tests already exist. The verification record reports 15 model tests passed but no executed real-RxJS suite because npm installation failed. The package pins RxJS 7.8.2 and TypeScript 5.8.3 but has no lockfile.
+F00 is complete: the committed npm lockfile passed clean installation, 15 model tests and 14 actual RxJS tests passed, including all 1,452 bounded comparisons, and generated views reproduced without drift. Read the actual run references and limits in F00 evidence. Keep RxJS 7.8.2 and the existing script names; no new framework or replacement RxJS runtime is needed.
 
-Do not rebuild that work or assume it is already runtime-validated. F00 verifies the existing machine before more operator profiles depend on it. This planning commit does not perform F00.
+Use `npm ci --ignore-scripts`, then `npm run check`. The committed GitHub Actions workflow provides a connected runner when local networking is unavailable. Inspect its actual result; do not equate a triggered run with a pass. It has read-only repository permissions and never publishes or commits automatically.
 
-## Scope and procedure
+Preserve `operators/takeWhile.md`, `model/takeWhile.ts`, TW01–TW08, the generator, and existing tests. Do not rebuild F00 or mark the entire prefix family complete because its reference passed baseline tests.
 
-1. **Read current main and evidence.** Check whether the gate has already been resolved by another session. Inspect package.json, tsconfig.json, the takeWhile profile/model, both test files, the generator, and documentation checker. Record the actual starting commit and run environment.
-2. **Install reproducibly.** Without a lockfile, use `npm install --ignore-scripts`, review and retain the lockfile, then run `npm ci --ignore-scripts`. With a valid committed lockfile, start with npm ci. Keep the direct dependency pins and private package; do not publish or migrate RxJS.
-3. **Run actual checks.** Use `npm run check`. It includes `check:types`, model tests, real RxJS tests, generated-view checks, and documentation checks. Run `npm run generate` and review any drift; after necessary fixes repeat the aggregate check on the final tree. All 1,452 bounded comparisons and the notification/subscription/callback/disposal fixtures must actually execute. A model pass or syntax check is insufficient.
-4. **Record, save, verify.** Create `evidence/F00-baseline-validation.md` with source/test scope, versions, commands, real outcomes, limitations, and any repairs. Append the new run to VERIFICATION.md rather than deleting the historical failure. Update the family-plan checkpoint, README, ROADMAP, this handoff, and CHANGELOG; commit the lockfile and coherent changes to main without forcing; verify the saved revision.
+## Exact family scope
 
-A source/model/test disagreement must be investigated, not hidden by changing expectations to fit the actual implementation. Preserve six-tuple names and evaluate supplied functions only once per modeled reaction.
+| Entry | Work required |
+|---|---|
+| takeWhile | Retain the indexed Boolean predicate and explicit inclusive false/true profile; check the omitted-default-argument form and complete family-level evidence |
+| skipWhile | Specify initial skipping and later forwarding; include the failing boundary and verify that predicate calls stop after it |
+| take | Specify nonnegative integer counts, including zero, one, and parameterized positive counts; activation and early cancellation |
+| skip | Specify nonnegative integer counts, including zero, one, and parameterized positive counts; prefix suppression and continued participation |
 
-## Acceptance and stop rule
+Read the pinned implementations, delegated helpers, Subscriber/Subscription behavior, and relevant upstream tests. Use the six sections S, S0, Z, A, T, G. Keep completion, error, cancellation, and disposal distinct. Declare unsupported counts, predicate return forms, overload narrowing, mutation, and reentrancy explicitly.
 
-F00 is Complete only after a reviewed lockfile, clean installation, passing full aggregate check, accurate evidence, and a verified repository checkpoint. Record diagram-rendering limits separately; do not claim a renderer run from generated Markdown alone.
+## Required comparison and boundary checks
 
-If installation or a required check fails, retain the achieved work and mark F00 Blocked with the actual error. Do not claim the runtime suite passed or advance to another family. Source-only preparation may be retained with its lower evidence status; it does not satisfy the gate. Do not spend repeated attempts retrying the same unavailable network without new information.
+Use independent subscriptions to values 2, 4, 7, 1 followed by completion, with predicate `value < 5` and counts of two. Compare default/exclusive takeWhile, inclusive takeWhile, skipWhile, take(2), and skip(2). Assert source subscription intervals and terminal timing as well as values.
 
-## Following bounded session — F01
+Include first-value rejection, always-true predicates, empty/never, source error, callback throw, callback indexes/call counts, take(0) versus skip(0), count boundaries, external cancellation, and cooperative synchronous production. A filter comparison is only a contrast fixture, not completion of F02.
 
-After F00 succeeds, set this handoff to F01. Keep the existing takeWhile profile/model/rule IDs and extend the package with skipWhile, take, and skip. Use the exact F01 brief in the family plan.
+The existing takeWhile macrostep model excludes cancellation during emission and reentrant callbacks. Preserve that scope. Add an execution-boundary note with separate discriminating observations, or a separately named finer model; never force nested execution through an atomically installed final state.
 
-The F01 deliverable is four canonical six-tuple profiles, guarded transition tables, rule-linked test plans, state diagrams and time/resource traces, a family comparison, actual model/RxJS evidence, an initialized qualified coverage index, regression checks, and a verified save. Make new family tests part of the existing aggregate test command; do not claim the old proposed `test:family` command exists.
+## Deliverables and completion gate
 
-The common comparison uses values 2, 4, 7, 1, predicate `value < 5`, and counts of two, followed by source completion. Test terminal timing and subscription lifetimes as well as value sequences. Preserve the existing macrostep exclusions; put cancellation-during-delivery and bounded reentry observations in an explicitly separate execution-boundary note or finer profile.
+Produce four canonical profiles, guarded rule-ID tables, test obligations, state diagrams and time/resource traces, a family comparison, model and real RxJS tests, an initialized qualified coverage index, and `evidence/F01-prefix-selection.md`. Reuse existing locations and give new rules noncolliding IDs. Extend the generator incrementally; do not hand-edit generated artifacts.
 
-After complete F01 evidence is saved, advance to F02 — Mapping and per-value selection. Completing F00 alone leaves family completion at 0/34.
+Make all new tests part of npm test and all new generated views part of check:generated. Preserve independent expected fixtures. Run the complete baseline and family regression checks on the final tree, inspect generated drift, and record actual evidence. The old proposed test:family command still does not exist unless deliberately implemented and verified in this session.
+
+Update coverage, the family tracker, README, ROADMAP, this handoff, verification evidence, and CHANGELOG together. Save to main without force, preserve unrelated edits and attribution, and verify the commit/check results. A failed core check leaves F01 unfinished; F00's historical success does not excuse a new regression.
+
+F01 is Complete only for explicitly declared profiles after every assigned identity satisfies the family gate. Until then completed families remain 0/34. Advance to F02 only after that verified checkpoint.
 
 ## Session-start instruction
 
-> Execute F00 from docs/NEXT-SESSION.md using the current main branch. Reuse the existing six-tuple model, tests, and generators; keep RxJS 7.8.2. Establish dependency reproducibility, run actual checks, record evidence, save the coherent changes, and verify the commit. If blocked, record the blocker without claiming validation. The next family continuation is F01, not F02.
+> Implement F01 from docs/NEXT-SESSION.md and section 9 of docs/FAMILY-IMPLEMENTATION-PLAN.md using current main. Reuse the F00-validated takeWhile model, rule IDs, lockfile, tests, and generator; add skipWhile, take, and skip. Keep RxJS 7.8.2 and canonical six-tuple language, derive tables/tests/visualizations, run and record actual checks, update coverage and progress, save, and verify the commit.
