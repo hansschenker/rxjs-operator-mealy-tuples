@@ -9,8 +9,8 @@
   },
   "scripts": {
     "check:types": "tsc -p tsconfig.json",
-    "test:model": "node --experimental-strip-types --test tests/model.test.mjs tests/families/F01-model.test.mjs",
-    "test:rxjs": "node --experimental-strip-types --test tests/rxjs.test.mjs tests/families/F01-prefix-selection.test.mjs",
+    "test:model": "node --experimental-strip-types --test tests/model.test.mjs tests/families/F01-model.test.mjs tests/families/F02-model.test.mjs",
+    "test:rxjs": "node --experimental-strip-types --test tests/rxjs.test.mjs tests/families/F01-prefix-selection.test.mjs tests/families/F02-value-selection.test.mjs",
     "test": "npm run test:model && npm run test:rxjs",
     "generate": "node --experimental-strip-types scripts/generate.mjs",
     "check:generated": "node --experimental-strip-types scripts/generate.mjs --check",
