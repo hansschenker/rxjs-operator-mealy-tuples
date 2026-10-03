@@ -1,0 +1,16 @@
+{
+  "run_id": 37120267342,
+  "job_id": 111194853044,
+  "commit": "9e30a4058201b17a35d6141fe9ebdf935bfae7f3",
+  "tree": "8bf8026e9194f2722675e399a900e8d4fb36bd01",
+  "artifact_id": 11273291841,
+  "artifact_zip_sha256": "90f71f687eb278bd32a5d6727183abe7f777c2c1dc70583828a04b3c06ec9a4e",
+  "final_aggregate_log_sha256": "b7a5498bdef26faff903794adbde2a0bcee410b6539ab67f2a777226d5cfa8d4",
+  "environment_log_sha256": "763514bc942a51b0539a419fb9f22c1b0676720024a96cd61bff3afa8a0a520b",
+  "lockfile_sha256": "15ab0afc6515e59299ca197482219b4faa3a6e15f357e8e220c0d757a5982b53",
+  "model_tests": 45,
+  "rxjs_tests": 68,
+  "bounded_comparisons": 6534,
+  "new_bounded_comparisons": 5082,
+  "summary_sha256": "de4094121a8f4282fa5e34a2a2ee0baa343954a79ba770391e1b4872c51235de"
+}

@@ -31,3 +31,7 @@ This is a finite discriminating sample, not exhaustive operator equivalence. Syn
 ## Status
 
 Model suite: **15 passed**. Project RxJS suite: **14 passed**, including the case containing all **1,452 passing bounded comparisons**. See [F00 evidence](../evidence/F00-baseline-validation.md) and [verification history](../docs/VERIFICATION.md). Model-only terminal-state assertions are not private-state observations of RxJS; a plan row is not runtime evidence beyond the cases actually executed.
+
+## F01 additions
+
+The family suite compares omitted inclusive with explicit false, asserts frame/subscription differences against take(2), tests first-value rejection, always-true behavior, cooperative source cancellation, and opaque payloads. EX01/EX02 are separate execution-boundary observations, not stable-model tests. See [family evidence](../evidence/F01-prefix-selection.md) and [comparison](../families/F01-prefix-selection.md). Original TW rule IDs and expectations are preserved.

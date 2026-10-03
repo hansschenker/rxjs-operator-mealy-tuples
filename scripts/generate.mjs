@@ -1,3 +1,4 @@
+import { prefixViews } from './prefix-views.mjs';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { S0, evaluate, rules } from '../model/takeWhile.ts';
@@ -38,6 +39,7 @@ const outputs = new Map([
   ['generated/takeWhile.transitions.md', table],
   ['generated/takeWhile.visualization.md', diagram],
   ['generated/takeWhile.trace.md', trace],
+  ...prefixViews(),
 ]);
 let failures = 0;
 for (const [path, text] of outputs) {
@@ -52,4 +54,4 @@ for (const [path, text] of outputs) {
   }
 }
 if (failures) process.exitCode = 1;
-else if (checkOnly) console.log('All 3 generated artifacts match the reviewed descriptors/reference model.');
+else if (checkOnly) console.log(`All ${outputs.size} generated artifacts match the reviewed descriptors/reference models.`);

@@ -3,7 +3,7 @@
 **GPT-6 Astra is the main contributor of this project.** Developed with Hans Schenker.
 
 **Baseline:** RxJS **7.8.2**. **Edition:** 0.1.0 — 2 October 2026.  
-**Status:** Proposed specification framework, one worked reference profile, and a small validation scaffold. Not an official RxJS standard, replacement runtime, or exhaustive operator catalogue.
+**Status:** Proposed specification framework, four scoped prefix-family profiles, and a validated test harness. Not an official RxJS standard, replacement runtime, or exhaustive operator catalogue.
 
 > The six-tuple is a semantic microscope: represent operator behavior, derive transition tables, test the predictions, visualize the reactions, and make classification the conclusion.
 
@@ -54,11 +54,11 @@ Visualizations and tests are sibling products of the model, not a mandatory seri
 
 ## Family implementation plan and next step
 
-The [complete family plan](docs/FAMILY-IMPLEMENTATION-PLAN.md), revision 1.1, adapts ROB-SN's **34 families across eight phases** to this repository. Its **146 planned API identities** retain their owning families and dependencies; those assignments are not a claim of implemented or verified coverage.
+The [complete family plan](docs/FAMILY-IMPLEMENTATION-PLAN.md), revision 1.2, adapts ROB-SN's **34 families across eight phases** to this repository. Its **146 planned API identities** retain their owning families and dependencies; those assignments are not a claim of implemented or verified coverage.
 
-**Current checkpoint:** **F00 Complete**; 0/34 operator families complete. F01 is In progress and is now the next task: complete takeWhile, skipWhile, take, and skip. F02–F34 remain Planned. The existing baseline has a committed lockfile and passing hosted validation: 15 model tests, 14 RxJS tests, and all 1,452 bounded comparisons. See [F00 evidence](evidence/F00-baseline-validation.md). F00 is a validation gate, not another operator family.
+**Current checkpoint:** **F00 and F01 Complete (declared scope)**; **1/34 operator families complete**. F01 covers takeWhile, skipWhile, take, and skip. The full harness passes **45 model tests and 68 RxJS tests**, including **6,534 bounded comparisons**. See [family comparison](families/F01-prefix-selection.md), [F01 evidence](evidence/F01-prefix-selection.md), and [qualified coverage](docs/OPERATOR-COVERAGE.md). The original takeWhile model, rule IDs, assertions, and three views are preserved.
 
-The [next-session brief](docs/NEXT-SESSION.md) now specifies the F01 continuation. Reuse the validated tests, generator, rule IDs, and locked dependencies. The [roadmap summary](docs/ROADMAP.md) provides navigation; the family plan is the authoritative tracker. The [migration record](docs/PLAN-MIGRATION-2026-10-02.md) remains historical planning evidence; [F00 evidence](evidence/F00-baseline-validation.md) records the subsequent actual runtime checks.
+**Next: F02 — Mapping and per-value selection**, following [NEXT-SESSION.md](docs/NEXT-SESSION.md). Reuse the validated dependency lock, tests, generator, and evidence discipline. [ROADMAP.md](docs/ROADMAP.md) summarizes the authoritative family tracker. Historical [plan migration](docs/PLAN-MIGRATION-2026-10-02.md) and [F00 evidence](evidence/F00-baseline-validation.md) remain intact.
 
 ## Reading path
 
@@ -72,6 +72,10 @@ The [next-session brief](docs/NEXT-SESSION.md) now specifies the F01 continuatio
 | [Behavioral qualities](docs/BEHAVIORAL-QUALITIES.md) | What to extract from the model and measured traces |
 | [Operator template](templates/OPERATOR-ANALYSIS.md) | Reusable six-section analysis with rule/test/diagram traceability |
 | [Custom-operator checklist](templates/CUSTOM-OPERATOR-CHECKLIST.md) | Specify a new policy before implementing it |
+| [F01 prefix family](families/F01-prefix-selection.md) | Four profiles, 30 rules, comparison, scope and classification |
+| [All operator profiles](operators/README.md) | Links to the four canonical six-tuples |
+| [Execution boundaries](families/F01-execution-boundaries.md) | Four separately verified cancellation/reentry cases |
+| [Coverage index](docs/OPERATOR-COVERAGE.md) | Four scoped profiles and all 142 remaining planned identities |
 | [takeWhile profile](operators/takeWhile.md) | A scoped, indexed, inclusive/exclusive reference example |
 | [takeWhile test plan](test-plans/takeWhile.md) | Reachability, expected words, termination, and resource assertions |
 | [Generated table](generated/takeWhile.transitions.md) | Reviewed rules in tabular form |
@@ -79,7 +83,8 @@ The [next-session brief](docs/NEXT-SESSION.md) now specifies the F01 continuatio
 | [Generated trace](generated/takeWhile.trace.md) | Model-predicted values, order, and subscription boundary |
 | [Verification record](docs/VERIFICATION.md) | Checks actually completed and checks not completed |
 | [Family implementation plan](docs/FAMILY-IMPLEMENTATION-PLAN.md) | All 34 families, planned inventory, dependencies, completion gates, and checkpoint |
-| [Next-session brief](docs/NEXT-SESSION.md) | Resume F01 using the validated takeWhile reference |
+| [Next-session brief](docs/NEXT-SESSION.md) | Start F02 using the completed F01 family |
+| [F01 evidence](evidence/F01-prefix-selection.md) | Actual family checks, retained result excerpts, and scope |
 | [F00 evidence](evidence/F00-baseline-validation.md) | Clean installation, actual runtime results, retained logs, and limits |
 | [Roadmap](docs/ROADMAP.md) | Synchronized summary of the authoritative family plan |
 | [Plan migration record](docs/PLAN-MIGRATION-2026-10-02.md) | Source snapshots, changes, and planning-only checks |

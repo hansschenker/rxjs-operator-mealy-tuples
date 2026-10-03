@@ -1,49 +1,42 @@
-# Next session — F01 prefix-family continuation
+# Next session — F02 mapping and per-value selection
 
-**Checkpoint:** F00 completed, 2 October 2026; plan revision 1.1.  
-**Repository:** `hansschenker/rxjs-operator-mealy-tuples`, branch `main`.  
-**Current task:** F01 — Taking and dropping prefixes.  
-**After complete F01:** F02 — Mapping and per-value selection.
+**Checkpoint:** F00 and F01 completed for their declared scopes, 3 October 2026.  
+**Repository:** hansschenker/rxjs-operator-mealy-tuples; branch main.  
+**Current task:** F02 — Mapping and per-value selection. **Reference:** map.  
+**Assigned entries:** P:map, P:filter, P:ignoreElements, P:mapTo, P:pluck.
 
-Read [AGENTS.md](../AGENTS.md), the authoritative [family plan](FAMILY-IMPLEMENTATION-PLAN.md), [F00 evidence](../evidence/F00-baseline-validation.md), and the [execution contract](EXECUTION-CONTRACT.md) from current main. Check for work saved after this handoff. This is a user-initiated session brief, not scheduled family implementation.
+Read current main, [AGENTS.md](../AGENTS.md), the [family tracker](FAMILY-IMPLEMENTATION-PLAN.md), [F01 evidence](../evidence/F01-prefix-selection.md), [F01 comparison](../families/F01-prefix-selection.md), and the [execution contract](EXECUTION-CONTRACT.md). Check for later work before starting. This is a user-initiated handoff, not scheduled execution.
 
-## Reuse the validated baseline
+## Reuse the completed baseline
 
-F00 is complete: the committed npm lockfile passed clean installation, 15 model tests and 14 actual RxJS tests passed, including all 1,452 bounded comparisons, and generated views reproduced without drift. Read the actual run references and limits in F00 evidence. Keep RxJS 7.8.2 and the existing script names; no new framework or replacement RxJS runtime is needed.
+Keep RxJS 7.8.2, the dependency lock, canonical S/S0/Z/A/T/G language, four prefix models, existing rule IDs, and all regression tests. Current recorded checks: 45 model tests, 68 RxJS tests, 6,534 bounded comparisons. There are twelve generated prefix views. Do not rebuild F00/F01 or treat their bounded execution notes as universal microstep models.
 
-Use `npm ci --ignore-scripts`, then `npm run check`. The committed GitHub Actions workflow provides a connected runner when local networking is unavailable. Inspect its actual result; do not equate a triggered run with a pass. It has read-only repository permissions and never publishes or commits automatically.
+Run npm ci --ignore-scripts and npm run check. Use the existing read-only hosted workflow when local networking is unavailable and inspect completed results. Existing test:model/test:rxjs/generate/check:generated/check:docs scripts must include all new files before completion. No test:family command is promised.
 
-Preserve `operators/takeWhile.md`, `model/takeWhile.ts`, TW01–TW08, the generator, and existing tests. Do not rebuild F00 or mark the entire prefix family complete because its reference passed baseline tests.
+## Bounded F02 profiles
 
-## Exact family scope
-
-| Entry | Work required |
+| Entry | Required analysis |
 |---|---|
-| takeWhile | Retain the indexed Boolean predicate and explicit inclusive false/true profile; check the omitted-default-argument form and complete family-level evidence |
-| skipWhile | Specify initial skipping and later forwarding; include the failing boundary and verify that predicate calls stop after it |
-| take | Specify nonnegative integer counts, including zero, one, and parameterized positive counts; activation and early cancellation |
-| skip | Specify nonnegative integer counts, including zero, one, and parameterized positive counts; prefix suppression and continued participation |
+| map | Value transformation, indexed projection, callback return/throw, payload identity, lifecycle forwarding |
+| filter | Predicate selection versus transformation, index on suppressed inputs, source completion/error/cancellation |
+| ignoreElements | Suppression of next notifications while preserving the relevant terminal and resource behavior |
+| mapTo | Fixed configured value and delegation/compatibility compared with map; exact API/overload limits |
+| pluck | Property-path traversal and delegation, missing/nullish path behavior, construction/argument edges; derive from the pinned source rather than assuming all map-like APIs coincide |
 
-Read the pinned implementations, delegated helpers, Subscriber/Subscription behavior, and relevant upstream tests. Use the six sections S, S0, Z, A, T, G. Keep completion, error, cancellation, and disposal distinct. Declare unsupported counts, predicate return forms, overload narrowing, mutation, and reentrancy explicitly.
+Read implementations, delegated helpers and upstream tests. Use functional named domain functions. Declare supported arguments, overloads, callback assumptions, exception origins, resource ownership, and exclusions. Legacy/deprecated names remain valid subjects on the 7.8.2 baseline; no migration is part of this package.
 
-## Required comparison and boundary checks
+## Deliverables and discriminating checks
 
-Use independent subscriptions to values 2, 4, 7, 1 followed by completion, with predicate `value < 5` and counts of two. Compare default/exclusive takeWhile, inclusive takeWhile, skipWhile, take(2), and skip(2). Assert source subscription intervals and terminal timing as well as values.
+Produce five canonical dispositions (a verified compatibility appendix is allowed where justified), guarded tables, linked model/RxJS tests, diagrams/traces, a family comparison, and evidence/F02-value-selection.md. The F01 filter contrast is a fixture, not an existing complete filter profile.
 
-Include first-value rejection, always-true predicates, empty/never, source error, callback throw, callback indexes/call counts, take(0) versus skip(0), count boundaries, external cancellation, and cooperative synchronous production. A filter comparison is only a contrast fixture, not completion of F02.
+Distinguish changing a payload from deciding whether any payload is emitted. Show rejected inputs still advancing a predicate index, intentional [] output versus Next(undefined), callback failures, empty/never inputs, source terminals, external cancellation, and independent subscriptions. Compare output timing and source lifetimes, not just final values. Include construction versus subscription observations where the exact API needs them. Reentrancy stays excluded unless separately specified and observed.
 
-The existing takeWhile macrostep model excludes cancellation during emission and reentrant callbacks. Preserve that scope. Add an execution-boundary note with separate discriminating observations, or a separately named finer model; never force nested execution through an atomically installed final state.
+Extend the generator and documentation checker without duplicating or hand-editing generated artifacts. Update the qualified coverage index while preserving all owning-family assignments. Add new tests to the aggregate regression suite; keep expected fixtures independent of the actual evaluator. Do not broaden a profile simply because a finite sample passes.
 
-## Deliverables and completion gate
+## Completion and next task
 
-Produce four canonical profiles, guarded rule-ID tables, test obligations, state diagrams and time/resource traces, a family comparison, model and real RxJS tests, an initialized qualified coverage index, and `evidence/F01-prefix-selection.md`. Reuse existing locations and give new rules noncolliding IDs. Extend the generator incrementally; do not hand-edit generated artifacts.
+Complete F02 only after its declared profiles, source review, views, tests, evidence, full regression checks, tracker updates, and saved revision are verified. Advance completion to 2/34 only then. On failure, retain In progress/Blocked with the actual reason; F01's success does not excuse a new regression.
 
-Make all new tests part of npm test and all new generated views part of check:generated. Preserve independent expected fixtures. Run the complete baseline and family regression checks on the final tree, inspect generated drift, and record actual evidence. The old proposed test:family command still does not exist unless deliberately implemented and verified in this session.
+After F02, the default next family is F03 — Distinctness and adjacent-value memory. Do not implement F03 as an unannounced extension to this session.
 
-Update coverage, the family tracker, README, ROADMAP, this handoff, verification evidence, and CHANGELOG together. Save to main without force, preserve unrelated edits and attribution, and verify the commit/check results. A failed core check leaves F01 unfinished; F00's historical success does not excuse a new regression.
-
-F01 is Complete only for explicitly declared profiles after every assigned identity satisfies the family gate. Until then completed families remain 0/34. Advance to F02 only after that verified checkpoint.
-
-## Session-start instruction
-
-> Implement F01 from docs/NEXT-SESSION.md and section 9 of docs/FAMILY-IMPLEMENTATION-PLAN.md using current main. Reuse the F00-validated takeWhile model, rule IDs, lockfile, tests, and generator; add skipWhile, take, and skip. Keep RxJS 7.8.2 and canonical six-tuple language, derive tables/tests/visualizations, run and record actual checks, update coverage and progress, save, and verify the commit.
+> Implement F02 from this handoff and the current family plan, preserving RxJS 7.8.2 and the F00/F01 baseline. Derive the six-tuples, tables, tests and visualizations, run and record actual checks, update coverage and progress, save to main without force, and verify the final commit.

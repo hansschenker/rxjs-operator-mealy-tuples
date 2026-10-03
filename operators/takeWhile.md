@@ -89,3 +89,7 @@ A predicate-controlled prefix-taking policy with per-subscription index memory, 
 ## Evidence limits
 
 The upstream [takeWhile test file](https://github.com/ReactiveX/rxjs/blob/7.8.2/spec/operators/takeWhile-spec.ts) was inspected in part; that upstream suite was not run. Our F00 hosted validation passed 15 reference-model tests and all 14 project RxJS tests, including 1,452 bounded comparisons. See [F00 evidence](../evidence/F00-baseline-validation.md) for exact revisions, raw output, and the distinction between project tests and upstream tests. Full reentrant or all-overload equivalence is not claimed; [verification history](../docs/VERIFICATION.md) retains the initial installation failure.
+
+## F01 family continuation
+
+TW01–TW08 and the three original generated views remain unchanged. [F01 comparison](../families/F01-prefix-selection.md), [cross-operator traces](../traces/F01-prefix-selection.md), and [family evidence](../evidence/F01-prefix-selection.md) add the omitted-default-argument comparison and neighboring profiles. [Execution-boundary cases](../families/F01-execution-boundaries.md) test cancellation during inclusive emission and nested indexes separately; they do not broaden the stable model's existing scope.

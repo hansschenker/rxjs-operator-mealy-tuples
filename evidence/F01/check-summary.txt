@@ -1,0 +1,69 @@
+Selected verbatim lines from the final aggregate output of run 37120267342
+Revision 9e30a4058201b17a35d6141fe9ebdf935bfae7f3; full-output SHA-256 b7a5498bdef26faff903794adbde2a0bcee410b6539ab67f2a777226d5cfa8d4
+These lines describe the code-only checkpoint (3 original generated views), not the later 12-view documentation tree.
+
+# tests 45
+# pass 45
+# fail 0
+# skipped 0
+ok 1 - [F01-COMPARE TW-default] values, terminal time, and source lifetime
+ok 2 - [F01-COMPARE TW-false] values, terminal time, and source lifetime
+ok 3 - [F01-COMPARE TW-true] values, terminal time, and source lifetime
+ok 4 - [F01-COMPARE SW] values, terminal time, and source lifetime
+ok 5 - [F01-COMPARE TK] values, terminal time, and source lifetime
+ok 6 - [F01-COMPARE SK] values, terminal time, and source lifetime
+ok 7 - [F01-COMPARE FILTER-CONTRAST] values, terminal time, and source lifetime
+ok 8 - [F01-BOUNDARY TW-first-false]
+ok 9 - [F01-BOUNDARY TW-first-false-inclusive]
+ok 10 - [F01-BOUNDARY TW-always-true]
+ok 11 - [F01-BOUNDARY SW-first-false]
+ok 12 - [F01-BOUNDARY SW-always-true]
+ok 13 - [F01-BOUNDARY SW-index]
+ok 14 - [F01-BOUNDARY SW-throw]
+ok 15 - [F01-BOUNDARY TK-zero]
+ok 16 - [F01-BOUNDARY TK-one]
+ok 17 - [F01-BOUNDARY TK-short-source]
+ok 18 - [F01-BOUNDARY SK-zero]
+ok 19 - [F01-BOUNDARY SK-one]
+ok 20 - [F01-BOUNDARY SK-equal-count]
+ok 21 - [F01-BOUNDARY SK-short-source]
+ok 22 - [F01-BOUNDARY SW-error-while-skipping]
+ok 23 - [F01-BOUNDARY SW-error-while-forwarding]
+ok 24 - [F01-BOUNDARY SK-error-before-boundary]
+ok 25 - [F01-BOUNDARY SK-error-after-boundary]
+ok 26 - [F01-BOUNDARY SW-cancel-while-skipping]
+ok 27 - [F01-BOUNDARY SW-cancel-while-forwarding]
+ok 28 - [F01-BOUNDARY SK-cancel-after-boundary]
+ok 29 - [F01-LIFECYCLE TW-empty]
+ok 30 - [F01-LIFECYCLE TW-error]
+ok 31 - [F01-LIFECYCLE TW-never-cancel]
+ok 32 - [F01-LIFECYCLE SW-empty]
+ok 33 - [F01-LIFECYCLE SW-error]
+ok 34 - [F01-LIFECYCLE SW-never-cancel]
+ok 35 - [F01-LIFECYCLE TK-empty]
+ok 36 - [F01-LIFECYCLE TK-error]
+ok 37 - [F01-LIFECYCLE TK-never-cancel]
+ok 38 - [F01-LIFECYCLE SK-empty]
+ok 39 - [F01-LIFECYCLE SK-error]
+ok 40 - [F01-LIFECYCLE SK-never-cancel]
+ok 41 - [F01-CALLS] skipWhile stops calling after boundary; independent subscriptions restart at zero
+ok 42 - [F01-INDEPENDENT] count state restarts for independent subscriptions
+ok 43 - [F01-ACTIVATION] construction is lazy; take(0) never touches source, skip(0) does
+ok 44 - [F01-COOPERATIVE TW] cancellation stops synchronous production and disposes once
+ok 45 - [F01-COOPERATIVE TW-inclusive] cancellation stops synchronous production and disposes once
+ok 46 - [F01-COOPERATIVE TK] cancellation stops synchronous production and disposes once
+ok 47 - [F01-COOPERATIVE SW-cancel-chain] cancellation stops synchronous production and disposes once
+ok 48 - [F01-COOPERATIVE SK-cancel-chain] cancellation stops synchronous production and disposes once
+ok 49 - [F01-PAYLOAD] values remain opaque references, including undefined and null
+ok 50 - [F01-DIFFERENTIAL] 5,082 new bounded model/RxJS comparisons
+ok 51 - [F01-EX01] cancelling during the inclusive boundary emission suppresses delivered complete
+ok 52 - [F01-EX02] nested predicate input sees the already-incremented takeWhile index
+ok 53 - [F01-EX03] bounded reentrant take completes after nested delivery without a third output
+ok 54 - [F01-EX04] reentrant skipWhile predicate can overwrite the nested forwarding latch
+ok 66 - 1,452 bounded non-reentrant model/RxJS comparisons include terminal and disposal words
+# tests 68
+# pass 68
+# fail 0
+# skipped 0
+All 3 generated artifacts match the reviewed descriptors/reference model.
+Checked 25 Markdown files: local targets, selected delimiters, source pins, and canonical vocabulary.

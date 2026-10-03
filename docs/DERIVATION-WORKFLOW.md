@@ -52,3 +52,7 @@ The [typed reference model](../model/takeWhile.ts) returns T and G together from
 Descriptors are explanatory text, **not an executable universal rule language**. The implementation and descriptors share IDs but their semantic consistency still needs review and tests. `check:generated` detects stale generated files; it does not prove descriptor correctness. The [model fixtures](../tests/model.test.mjs) provide independent expected results; the [RxJS suite](../tests/rxjs.test.mjs) supplies independently written runtime checks and bounded model/runtime comparisons. Its execution status is stated in [verification](VERIFICATION.md).
 
 No arbitrary six-tuple-to-code compiler or fully automatic operator-test generator is claimed.
+
+## F01 extension — 3 October 2026
+
+The scaffold now includes four prefix profiles, 30 rule IDs, and twelve generated artifacts. [F01 comparison](../families/F01-prefix-selection.md) and [evidence](../evidence/F01-prefix-selection.md) connect the models to actual checks. `scripts/prefix-views.mjs` renders the three added profiles; original takeWhile views remain unchanged. Descriptor text is still reviewed metadata, not a general executable rule DSL.

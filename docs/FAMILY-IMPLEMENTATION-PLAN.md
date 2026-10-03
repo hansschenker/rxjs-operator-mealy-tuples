@@ -1,6 +1,6 @@
 # Mealy-Tuples Operator-Family Implementation Plan
 
-**Revision:** 1.1 — Mealy adaptation, 2 October 2026.  
+**Revision:** 1.2 — F01 completion checkpoint, 3 October 2026. The original adaptation was revision 1.1.  
 **Baseline:** RxJS **7.8.2**; no major-version migration.  
 **Repository:** `hansschenker/rxjs-operator-mealy-tuples`.  
 **Delivery:** One bounded work package per user-initiated session; save and verify on `main`.  
@@ -56,24 +56,21 @@ Use the current [foundation](FOUNDATION.md), [execution contract](EXECUTION-CONT
 
 Out of scope: an RxJS replacement, general six-tuple interpreter/compiler, arbitrary generated operators, bulk import of unreviewed analyses, npm publication, and RxJS 8/9 migration. Small reference evaluators and generators remain development-time verification/teaching tools.
 
-## 3. Current checkpoint — F00 completed on 2 October 2026
+## 3. Current checkpoint
 
-| Field | State after F00 validation |
+| Field | Current evidence-backed state |
 |---|---|
-| Foundation and template | Existing six-tuple framework; retain rather than rebuild |
-| Existing reference | `operators/takeWhile.md`, rules TW01–TW08, typed model, test plan, generated table/diagram/trace |
-| Recorded model evidence | 15 model tests passed again, together with type/generated/document checks, in the recorded hosted runs |
-| Recorded actual RxJS evidence | 14 actual RxJS tests passed, including all 1,452 bounded comparisons; [F00 evidence](../evidence/F00-baseline-validation.md) |
-| Dependency reproducibility | npm-generated lockfile committed; clean npm ci passed with RxJS 7.8.2, TypeScript 5.8.3, and tslib 2.8.1 |
-| F00 validation gate | **Complete (declared scope)**; locked run 36968623943 succeeded |
-| Next work package | **F01 — Taking and dropping prefixes** |
-| First family to resume | **F01 — Taking and dropping prefixes** |
-| Family completion | **0 / 34 complete; F01 In progress; F02–F34 Planned** |
-| Scope of this checkpoint | F00 infrastructure, reproducibility, and actual baseline validation; no new operator profiles or completed family claims |
+| Foundation | Six-tuple vocabulary and execution contract retained |
+| F00 | Complete; dependency lock and hosted clean install preserved |
+| F01 | **Complete (declared scope)**: takeWhile, skipWhile, take, skip |
+| Profiles and views | Four profiles, 30 rule IDs, four guarded tables, four diagrams, four predicted traces |
+| Tests | 45 model and 68 actual RxJS tests passed; 6,534 bounded comparisons within two tests |
+| Coverage | Four scoped identities; 142 Planned identities; [coverage index](OPERATOR-COVERAGE.md) |
+| Family completion | **1 / 34 complete; F02–F34 Planned** |
+| Next work package | **F02 — Mapping and per-value selection** |
+| Evidence | [F01 record](../evidence/F01-prefix-selection.md), including exact hosted revision and limits |
 
-See [VERIFICATION.md](VERIFICATION.md) for the original evidence. Preserve it as dated history when appending later runs. A reference-model pass is not an RxJS pass. Tests for every/defaultIfEmpty inside the current suite are review regression fixtures, not completed F06 profiles.
-
-F00 is a prerequisite work package, **not a 35th operator family**. It is now complete: local DNS failure was overcome by executing the existing harness on GitHub-hosted runners. Historical failures remain in VERIFICATION.md. The read-only validation workflow runs on pushes to main and on manual dispatch; no operator-family work is automatically scheduled.
+Historical F00 and migration evidence remains dated history. Four execution-boundary observations are not complete microstep profiles. No full-overload or arbitrary-reentrancy equivalence is claimed. F00 is not an extra operator family. Current work is user-initiated; the workflow validates saved revisions, not automatically implements families.
 
 ## 4. F00 — Validate and lock the existing baseline
 
@@ -125,13 +122,13 @@ One owning family per entry is bookkeeping; multiple behavioral classifications 
 
 ## 6. Family sequence and progress tracker
 
-F01 is **In progress** because only its reference seed exists. Do not label the whole family Source reviewed or Model tested. All other families start Planned. The normal sequence remains F01 → F34 after F00. Complete unfinished work under its existing ID before starting an unrelated family. Large packages may be checkpointed over several user-initiated sessions without renumbering or silently dropping entries.
+F01 is **Complete (declared scope)** according to its linked evidence. F02–F34 remain Planned. The normal next family is F02; do not rerun unfinished-family selection against historical F01 staging text. The normal sequence remains F01 → F34 after F00. Complete unfinished work under its existing ID before starting an unrelated family. Large packages may be checkpointed over several user-initiated sessions without renumbering or silently dropping entries.
 
 ### A. Single-source behavior
 
 | Family / status | Study package and reference | Assigned entries | Required distinctions / dependencies |
 |---|---|---|---|
-| **F01** — In progress | **Taking and dropping prefixes**; reference: `takeWhile` | `P:takeWhile`, `P:skipWhile`, `P:take`, `P:skip` | Count versus predicate boundary; inclusive output; callback indexes; early completion versus continued participation. Dependencies: existing foundation; F00 gate. |
+| **F01** — Complete (declared scope) | **Taking and dropping prefixes**; reference: `takeWhile` | `P:takeWhile`, `P:skipWhile`, `P:take`, `P:skip` | Count versus predicate boundary; inclusive output; callback indexes; early completion versus continued participation. Dependencies: existing foundation; F00 gate. |
 | **F02** — Planned | **Mapping and per-value selection**; reference: `map` | `P:map`, `P:filter`, `P:ignoreElements`, `P:mapTo`, `P:pluck` | Transformation versus selection; indexes and callback throws; payload identity; compatibility forms. Dependencies: F01. |
 | **F03** — Planned | **Distinctness and adjacent-value memory**; reference: `distinctUntilChanged` | `P:distinctUntilChanged`, `P:distinctUntilKeyChanged`, `P:distinct`, `P:pairwise` | Last emitted key versus all remembered keys versus previous input; comparator/key failures; reset notifier. Dependencies: F02. |
 | **F04** — Planned | **Search and cardinality constraints**; reference: `first` | `P:first`, `P:last`, `P:elementAt`, `P:find`, `P:findIndex`, `P:single` | Early versus completion-dependent answers; empty/default/error policies; zero, one, or multiple matches. Dependencies: F02. |
@@ -245,7 +242,7 @@ Only after model and evidence are recorded, derive behavioral qualities and clas
 
 **Existing paths to preserve:** `operators/takeWhile.md`, `test-plans/takeWhile.md`, `model/takeWhile.ts`, `tests/model.test.mjs`, `tests/rxjs.test.mjs`, `scripts/generate.mjs`, `scripts/check_docs.py`, and the three `generated/takeWhile.*.md` views. Existing root-level operator pages remain canonical for pipeable entries; do not create a duplicate `operators/pipeable/takeWhile.md`. F00 also established `package-lock.json`, `.github/workflows/validation.yml`, and `evidence/F00-baseline-validation.md` with retained text logs/checksums.
 
-The following are **future conventions, not files claimed to exist now**:
+The following are layout conventions. F01 profiles, family/traces/evidence pages, tests, and coverage now exist; paths for later families remain future work:
 
 ```text
 families/F01-prefix-selection.md        comparison and family-wide acceptance
@@ -269,13 +266,15 @@ docs/OPERATOR-COVERAGE.md               qualified entries and profile statuses
 
 The runtime harness currently uses Node `.mjs` tests importing typed reference models with the existing type-stripping flag. Keep that working arrangement; the old roadmap's new TypeScript test harness is no longer a prerequisite. No gratuitous framework migration is needed. Reuse the present files before extracting common helpers or splitting tests, and retain a full regression command.
 
-In F01, initialize OPERATOR-COVERAGE.md from this inventory: qualified name, owning family, named configurations/profile IDs, source/model/runtime evidence separately, rule/test references, exclusions, and canonical path. Planned rows must not link to nonexistent profile pages as though implemented. A name with a profile is not automatically a validated API.
+F01 initialized OPERATOR-COVERAGE.md from this inventory. Extend it with: qualified name, owning family, named configurations/profile IDs, source/model/runtime evidence separately, rule/test references, exclusions, and canonical path. Planned rows must not link to nonexistent profile pages as though implemented. A name with a profile is not automatically a validated API.
 
 **Actual commands now** are listed in F00. The old proposed `npm run typecheck` is replaced by existing `npm run check:types`. The old `npm run test:family -- F01` does not exist; do not document it as runnable. Initially a new family file can be invoked explicitly with Node's current flag, and F01 must wire all new tests into npm test before completion. Add a family selector only if useful, implement it first, and record its tested contract. Verify new models fall within the existing TypeScript include scope and new generated views are covered by check:generated.
 
-## 9. F01 — Exact family continuation brief
+## 9. F01 — Completed family scope and retained acceptance brief
 
-**Reference:** takeWhile, already started. **Other entries:** skipWhile, take, skip. **Prerequisite:** F00 completed. **Default scope:** one independent subscription, no introduced sharing, RxJS 7.8.2; deterministic/declared callback behavior.
+**Status:** Complete (declared scope), 3 October 2026; see [family evidence](../evidence/F01-prefix-selection.md). The brief below is retained to define the accepted scope, not as unfinished work.
+
+**Reference:** takeWhile, retained and validated. **Other entries:** skipWhile, take, skip. **Prerequisite:** F00 completed. **Default scope:** one independent subscription, no introduced sharing, RxJS 7.8.2; deterministic/declared callback behavior.
 
 | Entry | Starting state | Initial profile to establish |
 |---|---|---|
@@ -347,6 +346,6 @@ Record inspected baseline SHAs in evidence and report the newly created SHA afte
 
 **Next session:**
 
-> Read AGENTS.md, docs/FAMILY-IMPLEMENTATION-PLAN.md, docs/NEXT-SESSION.md, and F00 evidence from main. Resume F01 — Taking and dropping prefixes. Reuse the validated takeWhile reference, TW01–TW08, committed lockfile, existing tests, and generator; add skipWhile, take, and skip under section 9. Keep RxJS 7.8.2, run the baseline and new checks, record evidence, update coverage/progress, save, and verify. F00 is complete; do not rebuild its harness or jump to F02.
+> Read current main, AGENTS.md, docs/NEXT-SESSION.md, and F01 evidence. Implement F02 — Mapping and per-value selection: map, filter, ignoreElements, mapTo, and pluck. Preserve the F00/F01 baseline and canonical six-tuple language, state exact profiles and exclusions, derive tables/tests/visualizations, run all regression checks, update coverage and evidence, save to main without force, and verify the resulting revision.
 
-**Following sessions:** resume unfinished work under its existing ID, otherwise take the next planned family with satisfied dependencies, establish scoped profiles and evidence, update the tracker, save, and verify. Session boundaries are work scopes, not promised durations or scheduled background work.
+**Following sessions:** resume unfinished work under its existing ID; otherwise take the next Planned family with satisfied dependencies. Sessions are bounded work scopes, not scheduled background work.

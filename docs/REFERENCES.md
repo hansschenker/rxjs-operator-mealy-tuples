@@ -27,3 +27,7 @@ Both repositories were read without changing them. This repository is a new adap
 | [Marble testing guide](https://rxjs.dev/guide/testing/marble-testing) | TestScheduler concepts; live guide, not version-pinned implementation evidence |
 
 Additional pinned sources are linked beside claims in the foundation and execution contract. A reference link is not a claim that every line or every upstream test was examined. Source inspection, model execution, and real RxJS execution are separately reported in [verification](VERIFICATION.md).
+
+## F01 source and runtime evidence
+
+[F01 evidence](../evidence/F01-prefix-selection.md) records the pinned four-operator sources, delegated helpers, inspected upstream test scope, hosted runtime results, and checksum references. Those scoped results supplement rather than replace the initial provenance above.

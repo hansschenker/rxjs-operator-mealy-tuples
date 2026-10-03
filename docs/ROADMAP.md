@@ -1,37 +1,19 @@
 # Roadmap and current checkpoint
 
-**Planning revision:** 1.1. **Checkpoint:** F00 completed, 2 October 2026. **Runtime baseline:** RxJS 7.8.2.  
-**Authoritative plan:** [Operator-Family Implementation Plan](FAMILY-IMPLEMENTATION-PLAN.md).  
-**Next-task brief:** [F01 prefix-family continuation](NEXT-SESSION.md).
-
-The adapted ROB-SN plan retains **34 family IDs, eight phases, and 146 planned API identities**. These are assignments, not automatically completed or verified profiles. The [migration record](PLAN-MIGRATION-2026-10-02.md) remains the history of plan adoption.
-
-## Current state
+**Revision:** 1.2 — 3 October 2026. **Baseline:** RxJS 7.8.2.  
+**Authoritative tracker:** [Family Implementation Plan](FAMILY-IMPLEMENTATION-PLAN.md). **Next:** [F02 handoff](NEXT-SESSION.md).
 
 | Work | Status |
 |---|---|
-| Six-tuple foundation and templates | Established; unchanged by F00 |
-| F00 baseline validation | **Complete**: reviewed lockfile, clean hosted installation, actual aggregate validation |
-| takeWhile reference, model, TW01–TW08, and three views | Source-reviewed, model-tested, and selectively RxJS-tested in the declared non-reentrant scope |
-| F01 prefix family | **In progress — next task**; complete the reference package and add skipWhile, take, skip |
-| F02–F34 | Planned |
-| Completed operator families | **0 / 34** |
+| F00 — Baseline validation | Complete; pinned dependencies and successful hosted clean install |
+| F01 — Taking/dropping prefixes | **Complete (declared scope)**: takeWhile, skipWhile, take, skip |
+| F02 — Mapping and per-value selection | **Next; Planned** |
+| F03–F34 | Planned; original assignments/dependencies retained |
+| Completed families | **1 / 34**; F00 is not an extra family |
 
-[F00 evidence](../evidence/F00-baseline-validation.md) records **15 model tests passed**, **14 RxJS tests passed**, and **all 1,452 bounded comparisons passed inside the RxJS suite**. The earlier local network failures remain in [verification history](VERIFICATION.md); successful runtime checks were performed on GitHub-hosted runners, not in the network-isolated local container. F00 is a prerequisite gate, not an extra family.
+[F01 evidence](../evidence/F01-prefix-selection.md) records 45 model and 68 actual RxJS tests passed, including 6,534 bounded comparisons. The family has 30 rule IDs and twelve generated table/diagram/trace views. [Coverage](OPERATOR-COVERAGE.md) distinguishes four scoped profiles from 142 planned identities; it is not an all-API proof.
 
-## Sequence
-
-```text
-F00  Complete: locked dependencies and validated existing baseline
-  ↓
-F01  NEXT: complete takeWhile, skipWhile, take, and skip
-  ↓
-F02  Mapping and per-value selection
-  ↓
-F03–F34  Preserve the dependency-ordered family plan
-  ↓
-Closing cross-family coverage and conformance audit
-```
+## Preserved phases
 
 | Phase | Families | Study area |
 |---|---|---|
@@ -44,10 +26,4 @@ Closing cross-family coverage and conformance audit
 | G | F30–F32 | Connections, sharing, and replay |
 | H | F33–F34 | Transport boundaries |
 
-## Rules for advancing
-
-Use S, S0, Z, A, T, G consistently. Each family needs guarded tables, test obligations, visualizations, comparison, execution assumptions, actual scoped RxJS checks, and a verified save. Preserve the existing takeWhile model exclusions and distinguish requested output words from delivered observations.
-
-Use `npm ci --ignore-scripts` and `npm run check`. The read-only [validation workflow](../.github/workflows/validation.yml) also runs the existing checks on main pushes and manual dispatch. A queued or merely started job is not a passed check. Preserve actual evidence for every completed package.
-
-F00 did not add neighboring operator profiles or complete F01. Resume F01; advance to F02 only after the full four-operator package passes its own completion gate.
+Reuse the validated baseline; do not rebuild F00/F01. Each new family needs six-tuple profiles, guarded rules, test obligations, views, explicit execution assumptions, source review, actual runtime evidence, and a verified save. Classification remains the conclusion. Preserve historical failures and bounded evidence instead of relabeling them as universal conformance.

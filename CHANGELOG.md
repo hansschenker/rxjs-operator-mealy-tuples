@@ -1,5 +1,13 @@
 # Change log
 
+## F01 prefix-family completion — 2026-10-03
+
+Added scoped skipWhile, take, and skip models/profiles alongside the unchanged takeWhile reference. All 30 rule IDs have guarded tables and state/trace views; the generator now covers 12 artifacts. Added family comparisons, test obligations, a qualified 146-identity coverage index, and four separate execution-boundary observations.
+
+Hosted clean-install checks passed 45 model tests and 68 actual RxJS tests, including 5,082 new and 1,452 inherited bounded comparisons. No original assertion or takeWhile model was weakened or changed. Direct dependency pins and lockfile remain unchanged. The complete documentation/generator tree is revalidated on save; source-scoped evidence and retained output excerpts are recorded.
+
+F01 is Complete for its declared scope; family completion is 1/34. The next handoff is F02. Arbitrary reentrant equivalence, unsupported runtime argument forms, full overload coverage, and rendered-diagram validation are not claimed. Historical F00 records remain intact.
+
 ## F00 completed — 2026-10-02
 
 Validated the existing baseline without changing the operator model, rule descriptors, test assertions, generator, or generated views. A fresh local npm attempt failed DNS resolution; a read-only, commit-pinned GitHub Actions workflow then ran the unchanged harness successfully on a connected runner.

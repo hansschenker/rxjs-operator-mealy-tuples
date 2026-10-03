@@ -1,7 +1,12 @@
 # Operator profiles
 
-| Profile | Scope | Model evidence | RxJS runtime evidence |
-|---|---|---|---|
-| [takeWhile](takeWhile.md) | RxJS 7.8.2; indexed Boolean predicate; inclusive false/true; stable non-reentrant reactions | Source-reviewed; 15 model tests passed | Selectively RxJS-tested in F00; project suite 14/14 and 1,452 bounded comparisons passed; see [evidence](../evidence/F00-baseline-validation.md) |
+**Baseline:** RxJS 7.8.2. **Completed family:** [F01 — Prefix selection](../families/F01-prefix-selection.md), declared scope. **Next:** F02.
 
-One profile is not coverage of all overloads or a completed family. Use the [operator-analysis template](../templates/OPERATOR-ANALYSIS.md) and check the [verification record](../docs/VERIFICATION.md).
+| Profile | Configuration / scope | Recorded evidence |
+|---|---|---|
+| [takeWhile](takeWhile.md) | Indexed Boolean predicate, inclusive omitted/false/true, stable non-reentrant reactions | Source-reviewed; model and actual RxJS tests passed |
+| [skipWhile](skipWhile.md) | Indexed Boolean predicate, Skipping/Forwarding, ordinary return/throw | Source-reviewed; model and actual RxJS tests passed |
+| [take](take.md) | Nonnegative safe-integer count; explicit zero/positive activation | Source-reviewed; model and actual RxJS tests passed |
+| [skip](skip.md) | Nonnegative safe-integer count; continued source participation | Source-reviewed; model and actual RxJS tests passed |
+
+[Family evidence](../evidence/F01-prefix-selection.md) records exact commands, revisions, and limits. [Coverage](../docs/OPERATOR-COVERAGE.md) retains all 146 planning identities and distinguishes the 142 still-planned entries. Four execution-boundary cases do not turn the stable profiles into complete reentrant models. Use the [analysis template](../templates/OPERATOR-ANALYSIS.md) for the next family.

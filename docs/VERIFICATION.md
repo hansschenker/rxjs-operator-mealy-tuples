@@ -1,4 +1,4 @@
-> **Current status: F00 complete.** The original entry below is retained as history; its unexecuted-runtime statements describe the initial checkpoint, not the current status. See the F00 entry at the end and [F00 evidence](../evidence/F00-baseline-validation.md).
+> **Current status: F00 and F01 complete for their declared scopes.** The original entry below is retained as history; its unexecuted-runtime statements describe the initial checkpoint, not the current status. See the F00 entry at the end and [F00 evidence](../evidence/F00-baseline-validation.md).
 
 # Verification record — 2 October 2026
 
@@ -44,3 +44,9 @@ A fresh local npm attempt again failed DNS resolution. The existing harness was 
 [Locked run 36968623943](https://github.com/hansschenker/rxjs-operator-mealy-tuples/actions/runs/36968623943) passed: **15 model tests**, **14 actual RxJS tests**, **all 1,452 bounded comparisons inside the RxJS suite**, type checking, the three generated-view checks, and documentation checks. Regeneration produced no drift and a second aggregate check passed. See [F00 evidence](../evidence/F00-baseline-validation.md) for exact revisions, commands, logs, checksums, and limits. No operator model or assertion was repaired or weakened.
 
 The historical missing-lockfile and unexecuted-RxJS blocker is resolved for the hosted environment. This is selective runtime evidence for the existing scope, not exhaustive equivalence or a rendered-diagram check. The initial evidence above remains unchanged. The next task is **F01 — Taking and dropping prefixes**, not another F00 setup pass.
+
+## F01 completed — 3 October 2026
+
+The prefix family now has four source-backed profiles: takeWhile, skipWhile, take, and skip. [F01 evidence](../evidence/F01-prefix-selection.md) records a successful clean-install hosted run on `9e30a4058201b17a35d6141fe9ebdf935bfae7f3`: **45 model tests, 68 actual RxJS tests, all 6,534 bounded comparisons**, and four separately scoped execution-boundary observations. No original takeWhile assertion/model was changed. Final documentation/generator validation is performed again on the complete saved revision.
+
+The three new profiles add nine generated views; all twelve views and all 45 Markdown files pass local consistency checks. The family coverage index records four scoped identities, 142 still planned, and **1/34 completed families**, not exhaustive API equivalence. The next task is **F02 — Mapping and per-value selection**. Historical F00 evidence above is retained as history; its earlier next-F01 statements do not override this checkpoint.
