@@ -1,0 +1,27 @@
+Selected verbatim lines from mealy-final-check.txt in Actions run 37122505531.
+This is an excerpt, not the full log. The final documentation/generator revision is validated separately.
+
+ok 70 - [F02 PL-C00] empty path throws at construction, not as G
+# tests 88
+# pass 88
+# fail 0
+# skipped 0
+ok 50 - [F01-DIFFERENTIAL] 5,082 new bounded model/RxJS comparisons
+ok 53 - [F01-EX03] bounded reentrant take completes after nested delivery without a third output
+ok 99 - [F02 pluck PL-C00] empty path throws before any subscription; undefined key is not empty path
+ok 118 - [F02 map] downstream take stops cooperative production during delivery
+ok 119 - [F02 filter] downstream take stops cooperative production during delivery
+ok 120 - [F02 mapTo] downstream take stops cooperative production during delivery
+ok 121 - [F02 pluck] downstream take stops cooperative production during delivery
+ok 124 - [F02 map] 1452 bounded model/RxJS comparisons
+ok 125 - [F02 filter] 1452 bounded model/RxJS comparisons
+ok 126 - [F02 ignoreElements] 363 bounded model/RxJS comparisons
+ok 127 - [F02 mapTo] 1452 bounded model/RxJS comparisons
+ok 128 - [F02 pluck] 2331 bounded model/RxJS comparisons
+ok 140 - 1,452 bounded non-reentrant model/RxJS comparisons include terminal and disposal words
+# tests 142
+# pass 142
+# fail 0
+# skipped 0
+All 12 generated artifacts match the reviewed descriptors/reference models.
+Checked 45 Markdown files: local targets, selected delimiters, source pins, and canonical vocabulary.

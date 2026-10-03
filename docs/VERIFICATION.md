@@ -1,4 +1,4 @@
-> **Current status: F00 and F01 complete for their declared scopes.** The original entry below is retained as history; its unexecuted-runtime statements describe the initial checkpoint, not the current status. See the F00 entry at the end and [F00 evidence](../evidence/F00-baseline-validation.md).
+> **Current status: F00, F01 and F02 complete for their declared scopes.** The dated entries below are retained as history; initial unexecuted-runtime statements do not describe the current status. See the newest F02 entry and [F02 evidence](../evidence/F02-value-selection.md).
 
 # Verification record — 2 October 2026
 
@@ -50,3 +50,11 @@ The historical missing-lockfile and unexecuted-RxJS blocker is resolved for the 
 The prefix family now has four source-backed profiles: takeWhile, skipWhile, take, and skip. [F01 evidence](../evidence/F01-prefix-selection.md) records a successful clean-install hosted run on `9e30a4058201b17a35d6141fe9ebdf935bfae7f3`: **45 model tests, 68 actual RxJS tests, all 6,534 bounded comparisons**, and four separately scoped execution-boundary observations. No original takeWhile assertion/model was changed. Final documentation/generator validation is performed again on the complete saved revision.
 
 The three new profiles add nine generated views; all twelve views and all 45 Markdown files pass local consistency checks. The family coverage index records four scoped identities, 142 still planned, and **1/34 completed families**, not exhaustive API equivalence. The next task is **F02 — Mapping and per-value selection**. Historical F00 evidence above is retained as history; its earlier next-F01 statements do not override this checkpoint.
+
+## F02 completed — 3 October 2026
+
+[F02 evidence](../evidence/F02-value-selection.md) records successful hosted run 37122505531 on code revision `95c8bdb7eaa73e1f6105b5145efe19a81305b4e9`: **88 model tests, 142 actual RxJS tests, all 13,584 bounded comparisons**, including 7,050 new F02 comparisons. Property, identity, empty-path construction, callback/index, lifetime and cancellation fixtures passed. All original prefix models/assertions and dependency pins/lock remain unchanged. No expectation or model was weakened to obtain a pass.
+
+The completed family package adds five profiles, five test plans and fifteen generated views. The final documentation/generator check is repeated on its saved revision; local checks cover all 27 views and 73 Markdown files. The executable checkpoint's 45-document/12-view check is not relabeled as that later validation. See the exact revision/run boundaries in evidence.
+
+The current checkpoint is **2/34 families**, **nine scoped identities** and **137 Planned identities**; next is **F03 — Distinctness and adjacent-value memory**. This entry supersedes earlier dated next-session statements without erasing them. Bounded runtime tests are not exhaustive equivalence or renderer validation.

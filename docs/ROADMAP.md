@@ -1,19 +1,18 @@
 # Roadmap and current checkpoint
 
-**Revision:** 1.2 — 3 October 2026. **Baseline:** RxJS 7.8.2.  
-**Authoritative tracker:** [Family Implementation Plan](FAMILY-IMPLEMENTATION-PLAN.md). **Next:** [F02 handoff](NEXT-SESSION.md).
+**Revision:** 1.3 — 3 October 2026. **Baseline:** RxJS 7.8.2.  
+**Authoritative tracker:** [Family Implementation Plan](FAMILY-IMPLEMENTATION-PLAN.md). **Next:** [F03 handoff](NEXT-SESSION.md).
 
 | Work | Status |
 |---|---|
-| F00 — Baseline validation | Complete; pinned dependencies and successful hosted clean install |
-| F01 — Taking/dropping prefixes | **Complete (declared scope)**: takeWhile, skipWhile, take, skip |
-| F02 — Mapping and per-value selection | **Next; Planned** |
-| F03–F34 | Planned; original assignments/dependencies retained |
-| Completed families | **1 / 34**; F00 is not an extra family |
+| F00 baseline | Complete; locked installation and hosted validation retained |
+| F01 — Taking/dropping prefixes | Complete for declared scope: four profiles |
+| F02 — Mapping/per-value selection | Complete for declared scope: five profiles |
+| F03 — Distinctness and adjacent-value memory | Next; Planned |
+| F04–F34 | Planned |
+| Completed families | **2 / 34**; F00 is not an extra family |
 
-[F01 evidence](../evidence/F01-prefix-selection.md) records 45 model and 68 actual RxJS tests passed, including 6,534 bounded comparisons. The family has 30 rule IDs and twelve generated table/diagram/trace views. [Coverage](OPERATOR-COVERAGE.md) distinguishes four scoped profiles from 142 planned identities; it is not an all-API proof.
-
-## Preserved phases
+[F02 evidence](../evidence/F02-value-selection.md) records 88 model and 142 actual RxJS tests passed, including 13,584 bounded comparisons. There are nine scoped profiles, 60 transition rule IDs plus PL-C00 construction, and 27 generated table/diagram/trace views. [Coverage](OPERATOR-COVERAGE.md) distinguishes nine scoped identities from 137 planned identities; it is not all-API proof. F00/F01 evidence remains dated history.
 
 | Phase | Families | Study area |
 |---|---|---|
@@ -26,4 +25,4 @@
 | G | F30–F32 | Connections, sharing, and replay |
 | H | F33–F34 | Transport boundaries |
 
-Reuse the validated baseline; do not rebuild F00/F01. Each new family needs six-tuple profiles, guarded rules, test obligations, views, explicit execution assumptions, source review, actual runtime evidence, and a verified save. Classification remains the conclusion. Preserve historical failures and bounded evidence instead of relabeling them as universal conformance.
+The original 34-family IDs, dependencies, and 146 inventory assignments are retained. Resume unfinished work; otherwise implement the next family with satisfied dependencies. Every family requires explicit S/S0/Z/A/T/G, guarded tables, tests, visualization, comparison, execution assumptions, actual scoped runtime checks, and a verified save. Do not convert source review or a document count into runtime evidence.

@@ -1,42 +1,43 @@
-# Next session — F02 mapping and per-value selection
+# Next session — F03 distinctness and adjacent-value memory
 
-**Checkpoint:** F00 and F01 completed for their declared scopes, 3 October 2026.  
+**Checkpoint:** F00, F01 and F02 completed for their declared scopes, 3 October 2026.  
 **Repository:** hansschenker/rxjs-operator-mealy-tuples; branch main.  
-**Current task:** F02 — Mapping and per-value selection. **Reference:** map.  
-**Assigned entries:** P:map, P:filter, P:ignoreElements, P:mapTo, P:pluck.
+**Current task:** F03 — Distinctness and adjacent-value memory. **Reference:** distinctUntilChanged.  
+**Assigned entries:** P:distinctUntilChanged, P:distinctUntilKeyChanged, P:distinct, P:pairwise.
 
-Read current main, [AGENTS.md](../AGENTS.md), the [family tracker](FAMILY-IMPLEMENTATION-PLAN.md), [F01 evidence](../evidence/F01-prefix-selection.md), [F01 comparison](../families/F01-prefix-selection.md), and the [execution contract](EXECUTION-CONTRACT.md). Check for later work before starting. This is a user-initiated handoff, not scheduled execution.
+Read current main, [AGENTS.md](../AGENTS.md), the [family tracker](FAMILY-IMPLEMENTATION-PLAN.md), [F02 evidence](../evidence/F02-value-selection.md), the [F02 comparison](../families/F02-value-selection.md), and the [execution contract](EXECUTION-CONTRACT.md). Check for later work before starting. This is a user-initiated handoff, not scheduled execution.
 
-## Reuse the completed baseline
+## Preserve the validated baseline
 
-Keep RxJS 7.8.2, the dependency lock, canonical S/S0/Z/A/T/G language, four prefix models, existing rule IDs, and all regression tests. Current recorded checks: 45 model tests, 68 RxJS tests, 6,534 bounded comparisons. There are twelve generated prefix views. Do not rebuild F00/F01 or treat their bounded execution notes as universal microstep models.
+Keep RxJS 7.8.2, TypeScript 5.8.3, the dependency lock, nine scoped profiles, 60 transition IDs plus PL-C00, all 27 generated views, and all prior assertions. The executable checkpoint passed 88 model tests and 142 actual RxJS tests, with 13,584 bounded comparisons. Final package/run boundaries are recorded in F02 evidence.
 
-Run npm ci --ignore-scripts and npm run check. Use the existing read-only hosted workflow when local networking is unavailable and inspect completed results. Existing test:model/test:rxjs/generate/check:generated/check:docs scripts must include all new files before completion. No test:family command is promised.
+Use npm ci --ignore-scripts and npm run check. When local networking fails, reuse the read-only hosted workflow and inspect its completed result. Do not equate triggering CI with passing it. Reuse existing script names; add new test/view files to the aggregate commands. Do not rebuild F00/F01/F02 or silently introduce a generic replacement Observable runtime.
 
-## Bounded F02 profiles
+## Bounded F03 profiles to establish
 
-| Entry | Required analysis |
+| Entry | Questions the analysis must resolve from pinned source |
 |---|---|
-| map | Value transformation, indexed projection, callback return/throw, payload identity, lifecycle forwarding |
-| filter | Predicate selection versus transformation, index on suppressed inputs, source completion/error/cancellation |
-| ignoreElements | Suppression of next notifications while preserving the relevant terminal and resource behavior |
-| mapTo | Fixed configured value and delegation/compatibility compared with map; exact API/overload limits |
-| pluck | Property-path traversal and delegation, missing/nullish path behavior, construction/argument edges; derive from the pinned source rather than assuming all map-like APIs coincide |
+| distinctUntilChanged | What key/value is retained: prior input or prior emitted value? What happens on the first input? Which comparison/key-selection rules and exceptions apply? |
+| distinctUntilKeyChanged | How does configured property access and optional comparison delegate? Which missing/nullish values and errors are in scope? |
+| distinct | What key set is retained, how can it grow, and what does a flush notifier's next/complete/error do? Which subscription order and ownership apply? |
+| pairwise | What is remembered after the first value, when is a pair emitted, and does completion invent a partial pair? What identity/snapshot guarantees are observed? |
 
-Read implementations, delegated helpers and upstream tests. Use functional named domain functions. Declare supported arguments, overloads, callback assumptions, exception origins, resource ownership, and exclusions. Legacy/deprecated names remain valid subjects on the 7.8.2 baseline; no migration is part of this package.
+Inspect the four implementations, delegated helpers, and relevant upstream tests on 7.8.2. Specify exact callback/configuration domains, default versus custom comparison, equality boundary fixtures such as repeated references and NaN where applicable, reset/flush policies, notifier timing and subscription order. Derive actual answers rather than copying an intuitive operator-name description.
+
+Use S, S0, Z, A, T, G. Distinguish first-value absence from a valid undefined payload. Keep ordered pairs/buffers as sequences, not sets; name a set only where membership, not order, is the relevant state. Shared source execution is not implicit.
 
 ## Deliverables and discriminating checks
 
-Produce five canonical dispositions (a verified compatibility appendix is allowed where justified), guarded tables, linked model/RxJS tests, diagrams/traces, a family comparison, and evidence/F02-value-selection.md. The F01 filter contrast is a fixture, not an existing complete filter profile.
+Four canonical dispositions, guarded rule-ID tables, independent model fixtures and RxJS tests, state diagrams/traces, a family comparison, and evidence/F03-distinctness.md. Use a repeated-value history that distinguishes previous input, last emitted key, all previously seen keys, and adjacent pairs. Check first input, empty/never, source complete/error, callback/key failures, cancellation, independent subscriptions, and notifier cases where applicable.
 
-Distinguish changing a payload from deciding whether any payload is emitted. Show rejected inputs still advancing a predicate index, intentional [] output versus Next(undefined), callback failures, empty/never inputs, source terminals, external cancellation, and independent subscriptions. Compare output timing and source lifetimes, not just final values. Include construction versus subscription observations where the exact API needs them. Reentrancy stays excluded unless separately specified and observed.
+Declare bounds and exclusions for unbounded retained keys and callback-dependent policies. Reentrancy remains excluded unless separately modeled and tested; prior execution-boundary tests are not generic microstep semantics. Verify timing, subscription lifetimes, and disposal as well as final values. Link every observed quality to rules and evidence before assigning classification tags.
 
-Extend the generator and documentation checker without duplicating or hand-editing generated artifacts. Update the qualified coverage index while preserving all owning-family assignments. Add new tests to the aggregate regression suite; keep expected fixtures independent of the actual evaluator. Do not broaden a profile simply because a finite sample passes.
+Extend the current generator and documentation checker; do not edit generated views by hand. Keep all existing outputs unchanged unless a reviewed cross-cutting correction is explicitly justified and regression-tested. Update the 146-identity coverage index without changing ownership assignments silently.
 
-## Completion and next task
+## Completion and handoff
 
-Complete F02 only after its declared profiles, source review, views, tests, evidence, full regression checks, tracker updates, and saved revision are verified. Advance completion to 2/34 only then. On failure, retain In progress/Blocked with the actual reason; F01's success does not excuse a new regression.
+Run full regression, type, generated-view and document checks on the final tree. Record actual source/run scope and limitations, update README, coverage, family tracker, ROADMAP, verification and CHANGELOG, save to main without force, and verify the final commit and CI result. A failure leaves F03 In progress/Blocked rather than advancing the count.
 
-After F02, the default next family is F03 — Distinctness and adjacent-value memory. Do not implement F03 as an unannounced extension to this session.
+F03 completion advances families to 3/34 only for the declared profiles. After F03 the next default family is F04 — Search and cardinality constraints. Do not implement F04 as an unannounced extension.
 
-> Implement F02 from this handoff and the current family plan, preserving RxJS 7.8.2 and the F00/F01 baseline. Derive the six-tuples, tables, tests and visualizations, run and record actual checks, update coverage and progress, save to main without force, and verify the final commit.
+> Implement F03 from this brief and the current family plan, preserving the F00/F01/F02 baseline and RxJS 7.8.2. Derive and validate the six-tuples, tables, tests and visualizations, record evidence, update progress, save to main, and verify the result.

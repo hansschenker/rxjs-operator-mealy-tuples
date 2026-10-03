@@ -27,7 +27,7 @@ for path in paths:
             errors.append(f'{rel}: unpinned RxJS source link {link}')
     if rel.name != 'ROB-SN-CROSSWALK.md' and ('\\delta' in text or 'δ(' in text):
         errors.append(f'{rel}: combined notation outside the migration crosswalk')
-for path in [*(ROOT / f'operators/{name}.md' for name in ('takeWhile', 'skipWhile', 'take', 'skip')), ROOT / 'templates/OPERATOR-ANALYSIS.md']:
+for path in [*(ROOT / f'operators/{name}.md' for name in ('takeWhile', 'skipWhile', 'take', 'skip', 'map', 'filter', 'ignoreElements', 'mapTo', 'pluck')), ROOT / 'templates/OPERATOR-ANALYSIS.md']:
     text = path.read_text(encoding='utf-8')
     required = ['1. State space', '2. Initial state', '3. Input alphabet', '4. Output alphabet', '5. Transition function', '6. Output function']
     positions = [text.find(heading) for heading in required]

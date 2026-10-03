@@ -1,5 +1,13 @@
 # Change log
 
+## F02 — Value-selection family, 2026-10-03
+
+Completed scoped map, filter, ignoreElements, mapTo and pluck analyses with 30 transition IDs, a separate empty-path construction contract, five profiles/test plans, fifteen generated views, comparison traces and source/run evidence. Preserve the six-tuple language and explicit time, cancellation, ownership and sharing boundaries.
+
+Added 43 model tests and 74 actual RxJS tests, including 7,050 new bounded comparisons. Hosted validation passed all 88 model and 142 RxJS tests with 13,584 total comparisons. The existing prefix code/assertions/views, dependency pins, lock and workflow are unchanged. No expected behavior required repair to obtain the pass.
+
+Extended generation and structural checks to all nine profiles; updated the qualified inventory to nine scoped and 137 planned identities, family completion to 2/34, and the next-session handoff to F03. Historical evidence remains intact; source repositories were not modified and no package was published. Final complete-tree validation is verified at the saved commit, not inferred from the earlier executable checkpoint.
+
 ## F01 prefix-family completion — 2026-10-03
 
 Added scoped skipWhile, take, and skip models/profiles alongside the unchanged takeWhile reference. All 30 rule IDs have guarded tables and state/trace views; the generator now covers 12 artifacts. Added family comparisons, test obligations, a qualified 146-identity coverage index, and four separate execution-boundary observations.

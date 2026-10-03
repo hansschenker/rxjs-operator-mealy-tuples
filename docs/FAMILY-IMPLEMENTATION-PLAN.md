@@ -1,6 +1,6 @@
 # Mealy-Tuples Operator-Family Implementation Plan
 
-**Revision:** 1.2 — F01 completion checkpoint, 3 October 2026. The original adaptation was revision 1.1.  
+**Revision:** 1.3 — F02 completion checkpoint, 3 October 2026. The original adaptation was revision 1.1.  
 **Baseline:** RxJS **7.8.2**; no major-version migration.  
 **Repository:** `hansschenker/rxjs-operator-mealy-tuples`.  
 **Delivery:** One bounded work package per user-initiated session; save and verify on `main`.  
@@ -63,14 +63,15 @@ Out of scope: an RxJS replacement, general six-tuple interpreter/compiler, arbit
 | Foundation | Six-tuple vocabulary and execution contract retained |
 | F00 | Complete; dependency lock and hosted clean install preserved |
 | F01 | **Complete (declared scope)**: takeWhile, skipWhile, take, skip |
-| Profiles and views | Four profiles, 30 rule IDs, four guarded tables, four diagrams, four predicted traces |
-| Tests | 45 model and 68 actual RxJS tests passed; 6,534 bounded comparisons within two tests |
-| Coverage | Four scoped identities; 142 Planned identities; [coverage index](OPERATOR-COVERAGE.md) |
-| Family completion | **1 / 34 complete; F02–F34 Planned** |
-| Next work package | **F02 — Mapping and per-value selection** |
-| Evidence | [F01 record](../evidence/F01-prefix-selection.md), including exact hosted revision and limits |
+| F02 | **Complete (declared scope)**: map, filter, ignoreElements, mapTo, pluck |
+| Profiles and views | Nine profiles, 60 transition rule IDs plus PL-C00 construction, 27 generated table/diagram/trace views |
+| Tests | 88 model and 142 actual RxJS tests passed; 13,584 bounded comparisons within seven tests |
+| Coverage | Nine scoped identities; 137 Planned identities; [coverage index](OPERATOR-COVERAGE.md) |
+| Family completion | **2 / 34 complete; F03–F34 Planned** |
+| Next work package | **F03 — Distinctness and adjacent-value memory** |
+| Evidence | [F01 record](../evidence/F01-prefix-selection.md) and [F02 record](../evidence/F02-value-selection.md), including exact hosted revisions and limits |
 
-Historical F00 and migration evidence remains dated history. Four execution-boundary observations are not complete microstep profiles. No full-overload or arbitrary-reentrancy equivalence is claimed. F00 is not an extra operator family. Current work is user-initiated; the workflow validates saved revisions, not automatically implements families.
+Historical F00 and migration evidence remains dated history. The F01 execution-boundary observations and F02 delivery-interruption checks are not complete microstep profiles. No full-overload or arbitrary-reentrancy equivalence is claimed. F00 is not an extra operator family. Current work is user-initiated; the workflow validates saved revisions, not automatically implements families.
 
 ## 4. F00 — Validate and lock the existing baseline
 
@@ -122,14 +123,14 @@ One owning family per entry is bookkeeping; multiple behavioral classifications 
 
 ## 6. Family sequence and progress tracker
 
-F01 is **Complete (declared scope)** according to its linked evidence. F02–F34 remain Planned. The normal next family is F02; do not rerun unfinished-family selection against historical F01 staging text. The normal sequence remains F01 → F34 after F00. Complete unfinished work under its existing ID before starting an unrelated family. Large packages may be checkpointed over several user-initiated sessions without renumbering or silently dropping entries.
+F01 and F02 are **Complete (declared scope)** according to their linked evidence. F03–F34 remain Planned. The normal next family is F03; historical F00/F01/F02 staging text is not the current handoff. The normal sequence remains F01 → F34 after F00. Complete unfinished work under its existing ID before starting an unrelated family. Large packages may be checkpointed over several user-initiated sessions without renumbering or silently dropping entries.
 
 ### A. Single-source behavior
 
 | Family / status | Study package and reference | Assigned entries | Required distinctions / dependencies |
 |---|---|---|---|
 | **F01** — Complete (declared scope) | **Taking and dropping prefixes**; reference: `takeWhile` | `P:takeWhile`, `P:skipWhile`, `P:take`, `P:skip` | Count versus predicate boundary; inclusive output; callback indexes; early completion versus continued participation. Dependencies: existing foundation; F00 gate. |
-| **F02** — Planned | **Mapping and per-value selection**; reference: `map` | `P:map`, `P:filter`, `P:ignoreElements`, `P:mapTo`, `P:pluck` | Transformation versus selection; indexes and callback throws; payload identity; compatibility forms. Dependencies: F01. |
+| **F02** — Complete (declared scope) | **Mapping and per-value selection**; reference: `map` | `P:map`, `P:filter`, `P:ignoreElements`, `P:mapTo`, `P:pluck` | Transformation versus selection; indexes and callback throws; payload identity; compatibility forms. Dependencies: F01. |
 | **F03** — Planned | **Distinctness and adjacent-value memory**; reference: `distinctUntilChanged` | `P:distinctUntilChanged`, `P:distinctUntilKeyChanged`, `P:distinct`, `P:pairwise` | Last emitted key versus all remembered keys versus previous input; comparator/key failures; reset notifier. Dependencies: F02. |
 | **F04** — Planned | **Search and cardinality constraints**; reference: `first` | `P:first`, `P:last`, `P:elementAt`, `P:find`, `P:findIndex`, `P:single` | Early versus completion-dependent answers; empty/default/error policies; zero, one, or multiple matches. Dependencies: F02. |
 | **F05** — Planned | **Folding and aggregation**; reference: `scan` | `P:scan`, `P:reduce`, `P:count`, `P:min`, `P:max`, `P:toArray` | Seeded/seedless S0; accumulation in T versus emission in G; empty input and completion. Dependencies: F02. |
@@ -307,6 +308,12 @@ Four canonical six-tuple profiles; eight-rule takeWhile continuity; complete gua
 
 A working reference alone does not complete F01. Once this family passes the completion gate, the next family is **F02 — Mapping and per-value selection**.
 
+## 9a. F02 completion checkpoint
+
+[F02](../families/F02-value-selection.md) supplies map, filter, ignoreElements, mapTo, and pluck profiles with 30 new transition rules, a separate empty-path construction contract, five test plans, fifteen generated views, and independent model/RxJS checks. The F01 models, assertions, twelve views, and dependency lock are retained. The complete harness has 88 model tests, 142 RxJS tests, and 13,584 bounded comparisons; these are scoped checks, not all-overload proof.
+
+[Evidence](../evidence/F02-value-selection.md) distinguishes the executable validation revision from final documentation/generator validation. Next is F03, reference distinctUntilChanged, with distinctUntilKeyChanged, distinct and pairwise. The bounded next-session brief is authoritative for that session's scope; do not implement F03 as an unannounced F02 extension.
+
 ## 10. Completion gates and evidence vocabulary
 
 Family progress: `Planned` → `In progress` → `Source reviewed` → `Model tested` → `RxJS tested` → `Complete (declared scope)`. Use `Blocked` with a concrete blocker and the retained achieved evidence stage. Source review/model/runtime evidence should also be stored per profile; mixed readiness in a family remains In progress. A status transition is not automatically earned by a generated document.
@@ -346,6 +353,6 @@ Record inspected baseline SHAs in evidence and report the newly created SHA afte
 
 **Next session:**
 
-> Read current main, AGENTS.md, docs/NEXT-SESSION.md, and F01 evidence. Implement F02 — Mapping and per-value selection: map, filter, ignoreElements, mapTo, and pluck. Preserve the F00/F01 baseline and canonical six-tuple language, state exact profiles and exclusions, derive tables/tests/visualizations, run all regression checks, update coverage and evidence, save to main without force, and verify the resulting revision.
+> Read current main, AGENTS.md, docs/NEXT-SESSION.md, and F02 evidence. Implement F03 — Distinctness and adjacent-value memory: distinctUntilChanged, distinctUntilKeyChanged, distinct, and pairwise. Preserve the F00/F01/F02 baseline and canonical six-tuple language, state exact profiles and exclusions, derive tables/tests/visualizations, run all regression checks, update coverage and evidence, save to main without force, and verify the resulting revision.
 
 **Following sessions:** resume unfinished work under its existing ID; otherwise take the next Planned family with satisfied dependencies. Sessions are bounded work scopes, not scheduled background work.

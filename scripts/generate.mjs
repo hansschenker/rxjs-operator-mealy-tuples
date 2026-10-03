@@ -1,3 +1,4 @@
+import { valueViews } from './value-views.mjs';
 import { prefixViews } from './prefix-views.mjs';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -40,6 +41,7 @@ const outputs = new Map([
   ['generated/takeWhile.visualization.md', diagram],
   ['generated/takeWhile.trace.md', trace],
   ...prefixViews(),
+  ...valueViews(),
 ]);
 let failures = 0;
 for (const [path, text] of outputs) {

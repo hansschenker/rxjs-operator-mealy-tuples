@@ -13,7 +13,21 @@ Model and runtime evidence are separate. All four profiles use independent subsc
 | P:take | F01 | [TK-NATURAL](../operators/take.md): nonnegative safe integer, zero/one/positive, explicit Start | TK00–TK07 | Source-reviewed; model and selected RxJS checks passed |
 | P:skip | F01 | [SK-NATURAL](../operators/skip.md): nonnegative safe integer, zero/one/positive | SK01–SK06 | Source-reviewed; model and selected RxJS checks passed |
 
-No assigned F01 identity is omitted. Type-guard narrowing, unsupported runtime arguments, exact microstep parity, and arbitrarily reentrant programs remain excluded. F01-EX01–EX04 are separately labeled execution observations. A filter contrast does not cover F02; two every/defaultIfEmpty regression fixtures do not cover F06.
+No assigned F01 identity is omitted. Type-guard narrowing, unsupported runtime arguments, exact microstep parity, and arbitrarily reentrant programs remain excluded. F01-EX01–EX04 are separately labeled execution observations. The earlier F01 filter contrast alone did not cover F02; the new F02 profile below supplies its own evidence. The every/defaultIfEmpty regression fixtures still do not cover F06.
+
+## F02 dispositions
+
+Five source-backed profiles add ongoing value transformation/selection, unconditional suppression, constant mapping, and property-path mapping. [F02 evidence](../evidence/F02-value-selection.md) and [runtime cases](../tests/families/F02-value-selection.test.mjs) record independent model/runtime results and exclusions.
+
+| Identity | Owner | Canonical profile / configurations | Rules | Recorded evidence |
+|---|---|---|---|---|
+| P:map | F02 | [MP-INDEXED](../operators/map.md): indexed terminating projection, return/throw; no thisArg | MP01–MP06 | Source-reviewed; model and selected RxJS checks passed |
+| P:filter | F02 | [FL-BOOLEAN](../operators/filter.md): indexed Boolean predicate; acceptance/rejection/throw | FL01–FL07 | Source-reviewed; model and selected RxJS checks passed |
+| P:ignoreElements | F02 | [IG-NOTIFICATIONS](../operators/ignoreElements.md): suppress Next, preserve terminals/lifetimes | IG01–IG05 | Source-reviewed; model and selected RxJS checks passed |
+| P:mapTo | F02 | [MT-CONSTANT](../operators/mapTo.md): fixed value/reference, map delegation | MT01–MT05 | Source-reviewed; model, identity and compatibility checks passed |
+| P:pluck | F02 | [PL-PROPERTY-PATH](../operators/pluck.md): nonempty string/number/symbol path, optional lookup/throw; separate empty-path construction | PL01–PL07; PL-C00 construction | Source-reviewed; model, property/lifecycle/compatibility checks passed |
+
+The nine F01/F02 identities are scoped dispositions, not all-overload equivalence. Main F02 models exclude arbitrary reentrancy, external mutation, invalid argument coercions, thisArg/type-narrowing proofs, and consumer/teardown exceptions. Four F02 delivery-interruption cases and one undefined-key observation are separately labeled. The remaining **137 identities are Planned**. Owning-family assignments and the 146-name inventory are unchanged.
 
 ## Planned identities
 
@@ -21,11 +35,6 @@ For **every row below**, disposition is Planned; profile IDs, local profile path
 
 | Qualified identity | Owning family |
 |---|---|
-| `P:map` | F02 |
-| `P:filter` | F02 |
-| `P:ignoreElements` | F02 |
-| `P:mapTo` | F02 |
-| `P:pluck` | F02 |
 | `P:distinctUntilChanged` | F03 |
 | `P:distinctUntilKeyChanged` | F03 |
 | `P:distinct` | F03 |
@@ -164,4 +173,4 @@ For **every row below**, disposition is Planned; profile IDs, local profile path
 | `X:ajax` | F33 |
 | `X:webSocket` | F34 |
 
-P/C/X distinguish pipeable, creation, and transport identities. Same-spelled creation and pipeable APIs remain separate. Root re-exports of the same implementation are normalized by the plan. F01 is Complete for its declared scope: 1/34 family packages. Four of the 146 named identities have scoped profiles; this is not 4/146 of all possible RxJS behavior.
+P/C/X distinguish pipeable, creation, and transport identities. Same-spelled creation and pipeable APIs remain separate. Root re-exports of the same implementation are normalized by the plan. F01 and F02 are Complete for their declared scopes: 2/34 family packages. Nine of the 146 named identities have scoped profiles; this is not 9/146 of all possible RxJS behavior.
